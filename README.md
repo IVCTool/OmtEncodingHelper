@@ -6,7 +6,9 @@ Helper Code for using HLA OMT files.
 block-beta
 columns 1
 NETN
+space
 RPR
+space
 HLAEncodingHelperCore
 
 NETN --> RPR
