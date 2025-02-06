@@ -1,0 +1,53 @@
+/**    Copyright 2022, Reinhard Herzog (Fraunhofer IOSB)
+
+Licensed under the Apache License, Version 2.0 (the "License")
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http: //www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+
+package org.nato.ivct.OmtEncodingHelpers.RPR.interactions;
+
+import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
+import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAmanager;
+
+import hla.rti1516e.encoding.DataElementFactory;
+import hla.rti1516e.encoding.EncoderException;
+import hla.rti1516e.encoding.HLAbyte;
+import hla.rti1516e.exceptions.FederateNotExecutionMember;
+import hla.rti1516e.exceptions.InvalidInteractionClassHandle;
+import hla.rti1516e.exceptions.NameNotFound;
+import hla.rti1516e.exceptions.NotConnected;
+import hla.rti1516e.exceptions.RTIinternalError;
+
+public class HLAfederate extends HLAmanager {
+
+    public enum Attributes {
+        HLAfederate
+    }
+    
+
+    public HLAfederate () throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException {
+        super();
+        DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
+        {
+            public HLAbyte createElement(int index)
+            {
+                return HLAroot.getEncoderFactory().createHLAbyte();
+            }
+        };
+        addParameter(Attributes.HLAfederate.name(), HLAroot.getEncoderFactory().createHLAvariableArray(byteFactory));
+    }
+    
+    public void setHLAfederate (byte[] value) throws NameNotFound, InvalidInteractionClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException, OmtEncodingHelperException {
+        setParameter(Attributes.HLAfederate.name(), value);
+    }
+
+}

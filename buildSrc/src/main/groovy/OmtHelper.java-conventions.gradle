@@ -1,0 +1,43 @@
+// Define Java conventions for this organization.
+// Projects need to use the Java, SLF for logging and jupiter for testing.
+
+plugins {
+    id 'java'
+}
+
+// Java Version Compatibility
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+// Projects should use Maven Central for external dependencies
+// Maven Local may be used for internal testing
+// snpashots are required for IVCT development testing
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation 'commons-io:commons-io:2.17.0'
+    // Use Simple Logging Facade API for reporting
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    // For testing include the libraries which are added by TestEngine in operation
+    implementation 'ch.qos.logback:logback-classic:1.3.5'
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    // Include the patch to the installed RTI jar file
+	implementation files("$System.env.LRC_CLASSPATH")
+
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.12.0-M1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'}
+
+test {
+    useJUnitPlatform()
+}

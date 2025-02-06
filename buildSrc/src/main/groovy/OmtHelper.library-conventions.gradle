@@ -1,0 +1,18 @@
+// Define Java Library conventions for this organization.
+// Projects need to use the organization's Java conventions and some common settings.
+
+plugins {
+    id 'java-library'
+    id 'java-library-distribution'
+    id 'OmtHelper.java-conventions'
+}
+
+version = '0.1-SNAPSHOT'
+
+java {
+	withSourcesJar()
+}
+
+dependencies {
+}
+

@@ -1,0 +1,8 @@
+plugins {
+    id 'OmtHelper.library-conventions'
+}
+
+dependencies {
+}
+
+group = 'org.nato.ivct.OmtEncodingHelper.Core'

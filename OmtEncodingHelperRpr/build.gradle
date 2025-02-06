@@ -1,0 +1,10 @@
+plugins {
+    id 'OmtHelper.library-conventions'
+}
+
+dependencies {
+    implementation project(':OmtEncodingHelperCore')
+}
+
+group = 'org.nato.ivct.OmtEncodingHelper.Rpr'
+version = '0.1-SNAPSHOT'
