@@ -14,6 +14,8 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.Netn.objects;
 
+import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 
 /**
  * NETN-BASE Extension to HLAobjectRoot
@@ -33,7 +35,7 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         UniqueId
     }
     
-    public HLAobjectRoot() {
+    public HLAobjectRoot() throws OmtEncodingHelperException {
         super();
         getCreateTime();
         getUniqueId();

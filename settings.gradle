@@ -9,4 +9,4 @@
 rootProject.name = 'OmtEncodingHelper'
 include("OmtEncodingHelperCore")
 include("OmtEncodingHelperRpr")
-// include("OmtEncodingHelperNetn")
+include("OmtEncodingHelperNetn")

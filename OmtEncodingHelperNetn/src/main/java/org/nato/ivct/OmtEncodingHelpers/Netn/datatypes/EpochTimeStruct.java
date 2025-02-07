@@ -1,4 +1,4 @@
-package main.java.org.nato.ivct.OmtEncodingHelpers.Netn.datatypes;
+package org.nato.ivct.OmtEncodingHelpers.Netn.datatypes;
 
 public class EpochTimeStruct {
 
