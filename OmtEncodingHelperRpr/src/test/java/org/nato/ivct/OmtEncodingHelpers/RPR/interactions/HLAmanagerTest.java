@@ -10,7 +10,6 @@ import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAmanager;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
-import org.nato.ivct.OmtEncodingHelpers.RPR.interactions.HLAreportObjectClassSubscription;
 
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.FederateAmbassador;

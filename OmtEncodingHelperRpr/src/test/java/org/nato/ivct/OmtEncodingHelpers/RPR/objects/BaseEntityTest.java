@@ -9,10 +9,6 @@ import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Aircraft;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.BaseEntity;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.PhysicalEntity;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Platform;
 import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Platform.Attributes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
