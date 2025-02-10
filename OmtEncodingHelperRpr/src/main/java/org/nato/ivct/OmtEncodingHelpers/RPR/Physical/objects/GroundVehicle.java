@@ -1,5 +1,5 @@
 /**
- * Copyright 2022, Reinhard Herzog (Fraunhofer IOSB)
+ * Copyright 2022, brf (Fraunhofer IOSB)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
     limitations under the License. 
  */
 
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 
-public class Aircraft extends Platform {
+public class GroundVehicle extends Platform {
 
-    public Aircraft() throws OmtEncodingHelperException {
+    public GroundVehicle() throws OmtEncodingHelperException {
         super();
     }
     

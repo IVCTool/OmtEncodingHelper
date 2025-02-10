@@ -1,4 +1,4 @@
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,6 @@ import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.DamageStatusEnum32;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ForceIdentifierEnum8;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.TrailingEffectsCodeEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.PhysicalEntity;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;

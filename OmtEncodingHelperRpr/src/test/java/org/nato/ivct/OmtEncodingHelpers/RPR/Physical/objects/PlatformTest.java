@@ -1,4 +1,4 @@
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Platform;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;

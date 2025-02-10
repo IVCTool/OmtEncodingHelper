@@ -14,7 +14,7 @@
     limitations under the License. 
  */
 
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;

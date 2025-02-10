@@ -14,17 +14,10 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.RPR.datatypes;
 
-import hla.rti1516e.encoding.DataElement;
-import hla.rti1516e.encoding.HLAinteger16BE;
 import hla.rti1516e.encoding.HLAinteger32BE;
-import hla.rti1516e.encoding.HLAoctet;
 import hla.rti1516e.exceptions.RTIinternalError;
 
-import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.StationEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct.AttributeName;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.PhysicalEntity.Attributes;
 
 
 public class AttachedPartsStruct extends HLAfixedRecordStruct { 

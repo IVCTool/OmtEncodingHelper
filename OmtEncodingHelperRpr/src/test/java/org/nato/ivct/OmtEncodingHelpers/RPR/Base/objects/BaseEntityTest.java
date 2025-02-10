@@ -12,7 +12,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License. */
 
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,13 +23,11 @@ import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Platform.Attributes;
-
+import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Aircraft;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import java.net.URL;
-import hla.rti1516e.AttributeHandle;
 import hla.rti1516e.AttributeHandleValueMap;
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.FederateAmbassador;
@@ -124,29 +122,6 @@ public class BaseEntityTest {
             base1.publishSpatial();
             base1.publishRelativeSpatial();
             base1.register();
-
-            Aircraft aircraft1 = new Aircraft();
-            aircraft1.addSubscribe(Platform.Attributes.AfterburnerOn);
-            aircraft1.addSubscribe(PhysicalEntity.Attributes.AcousticSignatureIndex);
-            aircraft1.addSubscribe(BaseEntity.Attributes.EntityIdentifier);
-            aircraft1.register();
-
-            // use the inherited method from Platform
-            aircraft1.publishAfterburnerOn();    
-            // use the type safe attribute
-            aircraft1.addPublish(Platform.Attributes.AntiCollisionLightsOn);
-            aircraft1.addPublish(Platform.Attributes.RampDeployed);
-            // use protected generic method -- prohibited 
-            // aircraft1.addPubAttribute("RampDeployed");
-
-            // use class method for subscription
-            Platform.addPub(Attributes.BlackOutBrakeLightsOn);
-
-            aircraft1.publish();
-
-            AttributeHandle handle = aircraft1.getAttributeHandle("AfterburnerOn");
-            String handleName = aircraft1.getHandleString(handle);
-            assertEquals(handleName, "AfterburnerOn");
         } catch (Exception e) {
             fail(e.getMessage());
         }

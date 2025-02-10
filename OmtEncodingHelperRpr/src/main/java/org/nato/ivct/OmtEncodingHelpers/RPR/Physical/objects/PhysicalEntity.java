@@ -14,12 +14,13 @@
     limitations under the License. 
  */
 
- package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+ package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import java.util.ArrayList;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ArticulatedParameterStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ArticulatedParameterStructLengthlessArray;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.CamouflageEnum32;
@@ -27,7 +28,6 @@ import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.DamageStatusEnum32;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ForceIdentifierEnum8;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.TrailingEffectsCodeEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.BaseEntity.Attributes;
 
 import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;

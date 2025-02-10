@@ -1,4 +1,4 @@
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,6 @@ import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialStaticStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialVariantStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Munition;
-import org.nato.ivct.OmtEncodingHelpers.RPR.objects.Platform;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;

@@ -12,13 +12,13 @@
 */
     
 
-package org.nato.ivct.OmtEncodingHelpers.RPR.objects;
+package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 
-public class Human extends Lifeform {
+public class NonHuman extends Lifeform {
 
-    public Human() throws OmtEncodingHelperException {
+    public NonHuman() throws OmtEncodingHelperException {
         super();
     }
     
