@@ -1,0 +1,82 @@
+/**    Copyright 2025, Reinhard Herzog (Fraunhofer IOSB)
+
+Licensed under the Apache License, Version 2.0 (the "License")
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http: //www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. */
+
+package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
+
+import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
+
+import hla.rti1516e.encoding.DataElementFactory;
+import hla.rti1516e.encoding.EncoderException;
+import hla.rti1516e.encoding.HLAbyte;
+import hla.rti1516e.encoding.HLAfixedArray;
+import hla.rti1516e.encoding.HLAinteger32BE;
+import hla.rti1516e.exceptions.FederateNotExecutionMember;
+import hla.rti1516e.exceptions.InvalidObjectClassHandle;
+import hla.rti1516e.exceptions.NameNotFound;
+import hla.rti1516e.exceptions.NotConnected;
+import hla.rti1516e.exceptions.RTIinternalError;
+
+/**
+ * NETN-BASE Extension to HLAobjectRoot
+ * 
+ * Attributes
+ * - CreateTime (Datatype EpochTime) [Optional]: 
+ *   The time in the scenario when the object is created.
+ * - UniqueId	(Datatype UUID)[Required]: 
+ *   A unique identifier for the object. The Universally Unique Identifier (UUID)
+ *   is generated or pre-defined.
+ * 
+ */
+public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot {
+
+    public enum AttributeName {
+        CreateTime,
+        UniqueId
+    }
+    
+    public HLAobjectRoot() throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        super();
+        // initialize attributes and ignore the return values
+        getCreateTime();
+        getUniqueId();
+    }
+
+    public void setCreateTime (EpochTimeStruct createTime) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        setAttributeValue(AttributeName.CreateTime.name(), createTime);
+    }
+
+    public EpochTimeStruct getCreateTime () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        EpochTimeStruct aEntityType = (EpochTimeStruct) getAttribute(AttributeName.CreateTime.name());
+        if (aEntityType == null) {
+            aEntityType = (EpochTimeStruct) encoderFactory.createHLAinteger32BE();
+            setAttributeValue(AttributeName.CreateTime.name(), aEntityType);
+        }
+        return aEntityType;
+    }
+
+    public void setUniqueId (HLAfixedArray<HLAbyte> uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        setAttributeValue(AttributeName.UniqueId.name(), uniqueId);
+    }
+
+    public UUIDStruct getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        UUIDStruct aEntityIdentifier = (UUIDStruct) getAttribute(AttributeName.UniqueId.name());
+        if (aEntityIdentifier == null) {
+            aEntityIdentifier = (UUIDStruct) encoderFactory.createHLAfixedArray((DataElementFactory<HLAbyte>) encoderFactory, 16);
+            setUniqueId(aEntityIdentifier);
+        }
+        return aEntityIdentifier;
+    }
+}
