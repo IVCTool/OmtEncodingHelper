@@ -21,8 +21,6 @@ import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAbyte;
-import hla.rti1516e.encoding.HLAfixedArray;
-import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.InvalidObjectClassHandle;
 import hla.rti1516e.exceptions.NameNotFound;
@@ -46,13 +44,26 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         CreateTime,
         UniqueId
     }
-    
+
+    /**
+     * HLAobjectRoot constructor extension for NETN-BASE
+     * 
+     * @throws OmtEncodingHelperException
+     * @throws NameNotFound
+     * @throws InvalidObjectClassHandle
+     * @throws FederateNotExecutionMember
+     * @throws NotConnected
+     * @throws RTIinternalError
+     * @throws EncoderException
+     */
     public HLAobjectRoot() throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         super();
-        // initialize attributes and ignore the return values
+        // Using getter methods to initialize attributes (return values will be ignored).
         getCreateTime();
         getUniqueId();
     }
+
+    /* Getter and Setter methods */
 
     public void setCreateTime (EpochTimeStruct createTime) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         setAttributeValue(AttributeName.CreateTime.name(), createTime);
@@ -67,7 +78,7 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         return aEntityType;
     }
 
-    public void setUniqueId (HLAfixedArray<HLAbyte> uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+    public void setUniqueId (UUIDStruct uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         setAttributeValue(AttributeName.UniqueId.name(), uniqueId);
     }
 
