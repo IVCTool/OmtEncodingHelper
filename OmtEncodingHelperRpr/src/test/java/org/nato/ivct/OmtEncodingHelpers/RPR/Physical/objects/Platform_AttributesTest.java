@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialStaticStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialVariantStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialStaticStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialVariantStruct;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;

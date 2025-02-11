@@ -17,7 +17,7 @@ package org.nato.ivct.OmtEncodingHelpers.RPR.datatypes;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.TrailingEffectsCodeEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.TrailingEffectsCodeEnum32;
 
 import hla.rti1516e.encoding.DecoderException;
 

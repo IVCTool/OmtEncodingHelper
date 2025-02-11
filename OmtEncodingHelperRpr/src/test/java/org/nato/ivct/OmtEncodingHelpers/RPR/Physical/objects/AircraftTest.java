@@ -21,9 +21,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Aircraft;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Platform.Attributes;
 

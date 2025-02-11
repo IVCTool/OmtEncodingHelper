@@ -18,9 +18,9 @@ package org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityIdentifierStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialVariantStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialVariantStruct;
 
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAfixedRecord;

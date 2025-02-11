@@ -4,15 +4,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.junit.jupiter.api.Test;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.OrientationStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialFPStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialFVStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialRPStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialRVStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialStaticStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.SpatialVariantStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.VelocityVectorStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.WorldLocationStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.OrientationStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialFPStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialFVStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialRPStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialRVStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialStaticStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialVariantStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.VelocityVectorStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.WorldLocationStruct;
 
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.exceptions.RTIinternalError;

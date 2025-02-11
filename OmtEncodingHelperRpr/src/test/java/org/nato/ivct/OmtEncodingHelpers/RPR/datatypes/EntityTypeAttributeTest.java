@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,7 +1,7 @@
 package org.nato.ivct.OmtEncodingHelpers.RPR.datatypes;
 
 import org.junit.jupiter.api.Test;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.WorldLocationStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.WorldLocationStruct;
 
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.exceptions.RTIinternalError;

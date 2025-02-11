@@ -20,14 +20,14 @@ import java.util.ArrayList;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedParameterStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedParameterStructLengthlessArray;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ArticulatedParameterStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ArticulatedParameterStructLengthlessArray;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.CamouflageEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.DamageStatusEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ForceIdentifierEnum8;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.TrailingEffectsCodeEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.CamouflageEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.DamageStatusEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.ForceIdentifierEnum8;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.TrailingEffectsCodeEnum32;
 
 import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;

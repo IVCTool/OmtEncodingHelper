@@ -11,8 +11,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAreportInteractionPublication;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
-import org.nato.ivct.OmtEncodingHelpers.RPR.interactions.HLAreportInteractionPublication;
 
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.FederateAmbassador;

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAmanager;
+import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAreportObjectClassSubscription;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
 
 import hla.rti1516e.CallbackModel;

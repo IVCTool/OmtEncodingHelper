@@ -3,6 +3,7 @@ package org.nato.ivct.OmtEncodingHelpers.RPR.datatypes;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedPartsTypeEnum32;
 
 public class ArticulatedPartsTypeEnum32Test {
     @Test

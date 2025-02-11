@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.MarkingEncodingEnum8;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.MarkingEncodingEnum8;
 
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.exceptions.RTIinternalError;

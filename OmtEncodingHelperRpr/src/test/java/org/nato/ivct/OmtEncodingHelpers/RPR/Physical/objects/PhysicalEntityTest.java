@@ -7,11 +7,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.CamouflageEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.DamageStatusEnum32;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.EntityTypeStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.ForceIdentifierEnum8;
-import org.nato.ivct.OmtEncodingHelpers.RPR.datatypes.TrailingEffectsCodeEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.CamouflageEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.DamageStatusEnum32;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.ForceIdentifierEnum8;
+import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.TrailingEffectsCodeEnum32;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
