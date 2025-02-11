@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
-import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
+import org.nato.ivct.OmtEncodingHelpers.RPR.RprFomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.CamouflageEnum32;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.DamageStatusEnum32;
@@ -136,7 +136,7 @@ public class PhysicalEntityTest {
         RtiFactory rtiFactory = RtiFactoryFactory.getRtiFactory();
         rtiAmbassador = rtiFactory.getRtiAmbassador();
         FederateAmbassador nullAmbassador = new NullFederateAmbassador();
-         URL[] fomList = new FomFiles()
+         URL[] fomList = new RprFomFiles()
             .addRPR_BASE()
             .addRPR_Enumerations()
             .addRPR_Foundation()

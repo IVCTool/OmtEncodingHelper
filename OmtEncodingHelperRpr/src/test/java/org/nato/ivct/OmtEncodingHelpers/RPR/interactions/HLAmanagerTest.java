@@ -10,7 +10,7 @@ import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAmanager;
 import org.nato.ivct.OmtEncodingHelpers.Core.interactions.HLAreportObjectClassSubscription;
-import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
+import org.nato.ivct.OmtEncodingHelpers.RPR.RprFomFiles;
 
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.FederateAmbassador;
@@ -30,7 +30,7 @@ public class HLAmanagerTest {
         RtiFactory rtiFactory = RtiFactoryFactory.getRtiFactory();
         rtiAmbassador = rtiFactory.getRtiAmbassador();
         FederateAmbassador nullAmbassador = new NullFederateAmbassador();
-        URL[] fomList = new FomFiles()
+        URL[] fomList = new RprFomFiles()
             .addRPR_BASE()
             .addRPR_Enumerations()
             .addRPR_Foundation()

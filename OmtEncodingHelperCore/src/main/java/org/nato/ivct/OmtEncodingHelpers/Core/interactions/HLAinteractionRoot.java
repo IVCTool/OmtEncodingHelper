@@ -112,7 +112,7 @@ public class HLAinteractionRoot extends HLAroot {
         if (holder != null) {
             return holder.data;
         }
-        return null;
+        throw new IllegalArgumentException("Parameter " + parameterName + " not found in " + this.getHlaClassName());
     }
 
     /**

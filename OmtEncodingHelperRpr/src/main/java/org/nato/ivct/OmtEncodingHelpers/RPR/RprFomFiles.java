@@ -23,12 +23,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FomFiles {
-    private static final Logger log = LoggerFactory.getLogger(FomFiles.class);
+public class RprFomFiles {
+    private static final Logger log = LoggerFactory.getLogger(RprFomFiles.class);
     private static final String prefix = "ivct/";
-    ArrayList<URL> fomList = new ArrayList<>();
+    protected ArrayList<URL> fomList = new ArrayList<>();
     
-    public FomFiles() {
+    public RprFomFiles() {
         fomList = new ArrayList<>();
     }
 
@@ -37,11 +37,29 @@ public class FomFiles {
      * creates temporary file copies in the user tmp directory. This
      * is required as some RTIs are not supporting the "jar" access
      * protocol to the module files.
-      */
-    private URL createTempFileLegacy (String resource, String suffix) {
+      */    
+    protected URL createTempFile (String resource, String suffix) {
         try {
             log.trace("using {}{}", resource, suffix);
-            URL fom = FomFiles.class.getResource("/" + resource + suffix);
+            URL fom = RprFomFiles.class.getResource("/" + resource + suffix);
+            File temp = File.createTempFile(prefix + resource, suffix);
+            byte[] resourceFileBytes = fom.openStream().readAllBytes();
+            Files.write(temp.toPath(), resourceFileBytes);
+            temp.deleteOnExit();
+            return temp.toURI().toURL();
+        } catch (IOException e) {
+            log.error("error while creating temporary OMT files", e);
+        }
+        return null;
+    }
+
+    /** 
+     * FIXME: thats the way, it should be done - but the temporary file names causes issues with the MAK RTI ?!?
+     */    
+    protected URL createTempFileLegacy (String resource, String suffix) {
+        try {
+            log.trace("using {}{}", resource, suffix);
+            URL fom = RprFomFiles.class.getResource("/" + resource + suffix);
             File temp = new File(resource + suffix);
             if (!temp.exists()) {
                 temp.createNewFile();
@@ -55,25 +73,7 @@ public class FomFiles {
         return null;
     }
 
-    /** 
-     * FIXME: thats the way, it should be done - but the temporary file names causes issues with the MAK RTI ?!?
-     */
-    private URL createTempFile (String resource, String suffix) {
-        try {
-            log.trace("using {}{}", resource, suffix);
-            URL fom = FomFiles.class.getResource("/" + resource + suffix);
-            File temp = File.createTempFile(prefix + resource, suffix);
-            byte[] resourceFileBytes = fom.openStream().readAllBytes();
-            Files.write(temp.toPath(), resourceFileBytes);
-            temp.deleteOnExit();
-            return temp.toURI().toURL();
-        } catch (IOException e) {
-            log.error("error while creating temporary OMT files", e);
-        }
-        return null;
-    }
-
-    public FomFiles addFomFile (String fileName) {
+    public RprFomFiles addFomFile (String fileName) {
         File fom = new File(fileName);
         URL fUri = null;
         try {
@@ -85,62 +85,62 @@ public class FomFiles {
         return this;
     }
 
-    public FomFiles addRPR_BASE() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Base_v2.0.xml"));
+    public RprFomFiles addRPR_BASE() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Base_v2.0.xml"));
         return this;
     }
     
-    public FomFiles addTmpRPR_BASE() {
+    public RprFomFiles addTmpRPR_BASE() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Base_v2.0",".xml"));
         return this;
     }
     
-    public FomFiles addRPR_Enumerations() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Enumerations_v2.0.xml"));
+    public RprFomFiles addRPR_Enumerations() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Enumerations_v2.0.xml"));
         return this;
     }
     
-    public FomFiles addTmpRPR_Enumerations() {
+    public RprFomFiles addTmpRPR_Enumerations() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Enumerations_v2.0", ".xml"));
         return this;
     }
     
-    public FomFiles addRPR_Switches() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Switches_v2.0.xml"));
+    public RprFomFiles addRPR_Switches() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Switches_v2.0.xml"));
         return this;
     }
     
-    public FomFiles addTmpRPR_Switches() {
+    public RprFomFiles addTmpRPR_Switches() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Switches_v2.0", ".xml"));
         return this;
     }
     
-    public FomFiles addRPR_Foundation() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Foundation_v2.0.xml"));
+    public RprFomFiles addRPR_Foundation() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Foundation_v2.0.xml"));
         return this;
     }
     
-    public FomFiles addTmpRPR_Foundation() {
+    public RprFomFiles addTmpRPR_Foundation() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Foundation_v2.0", ".xml"));
         return this;
     }
     
-    public FomFiles addRPR_Physical() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Physical_v2.0.xml"));
+    public RprFomFiles addRPR_Physical() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Physical_v2.0.xml"));
         return this;
     }
 
-    public FomFiles addTmpRPR_Physical() {
+    public RprFomFiles addTmpRPR_Physical() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Physical_v2.0", ".xml"));
         return this;
     }
 
-    public FomFiles addRPR_Warfare() {
-        fomList.add(FomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Warfare_v2.0.xml"));
+    public RprFomFiles addRPR_Warfare() {
+        fomList.add(RprFomFiles.class.getResource("/RPR-FOM-v2.0/RPR-Warfare_v2.0.xml"));
         return this;
     }
 
-    public FomFiles addTmpRPR_Warfare() {
+    public RprFomFiles addTmpRPR_Warfare() {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Warfare_v2.0", ".xml"));
         return this;
     }

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot;
-import org.nato.ivct.OmtEncodingHelpers.RPR.FomFiles;
+import org.nato.ivct.OmtEncodingHelpers.RPR.RprFomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialStaticStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.SpatialVariantStruct;
@@ -62,7 +62,7 @@ public class Platform_AttributesTest {
         RtiFactory rtiFactory = RtiFactoryFactory.getRtiFactory();
         rtiAmbassador = rtiFactory.getRtiAmbassador();
         FederateAmbassador nullAmbassador = new NullFederateAmbassador();
-        URL[] fomList = new FomFiles()
+        URL[] fomList = new RprFomFiles()
             .addTmpRPR_BASE()
             .addTmpRPR_Enumerations()
             .addTmpRPR_Foundation()
