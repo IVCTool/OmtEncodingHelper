@@ -6,17 +6,17 @@ Helper Code for using HLA OMT files.
 block-beta
 columns 3
 
-NETN:3
+NETN("NETN 3.0"):3
 block:NetnModules:3
     ORG ETR ENTITY
     SMC:3
-    NETN.Base:3 
+    Base:3 
 end
 space:3
-RPR:3
+RPR("RPR 2.0"):3
 block:RPRCore:3
     Switches Physical Warfare
-    RPR.Base:3 
+    Base:3 
     Enumerations:3
     Foundation:3
 end
