@@ -14,6 +14,7 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
 
+import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
@@ -21,6 +22,8 @@ import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAbyte;
+import hla.rti1516e.encoding.HLAfixedArray;
+import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.InvalidObjectClassHandle;
 import hla.rti1516e.exceptions.NameNotFound;
@@ -44,6 +47,7 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         CreateTime,
         UniqueId
     }
+    DataElementFactory<HLAbyte> byteFactory;
 
     /**
      * HLAobjectRoot constructor extension for NETN-BASE
@@ -58,36 +62,44 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
      */
     public HLAobjectRoot() throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         super();
-        // Using getter methods to initialize attributes (return values will be ignored).
-        getCreateTime();
-        getUniqueId();
+        byteFactory = new DataElementFactory<HLAbyte>()
+        {
+            public HLAbyte createElement(int index)
+            {
+                return HLAroot.getEncoderFactory().createHLAbyte();
+            }            
+        };
     }
 
     /* Getter and Setter methods */
 
-    public void setCreateTime (EpochTimeStruct createTime) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
-        setAttributeValue(AttributeName.CreateTime.name(), createTime);
-    }
-
-    public EpochTimeStruct getCreateTime () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
-        EpochTimeStruct aEntityType = (EpochTimeStruct) getAttribute(AttributeName.CreateTime.name());
-        if (aEntityType == null) {
-            aEntityType = (EpochTimeStruct) encoderFactory.createHLAinteger32BE();
-            setAttributeValue(AttributeName.CreateTime.name(), aEntityType);
+    private HLAinteger32BE getDataElementCreateTime () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        HLAinteger32BE holder = (HLAinteger32BE) getAttribute(AttributeName.CreateTime.name());
+        if (holder == null) {
+            holder = encoderFactory.createHLAinteger32BE();
+            setAttributeValue(AttributeName.CreateTime.name(), holder);            
         }
-        return aEntityType;
+        return holder;
+    }
+    public void setCreateTime (int createTime) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        HLAinteger32BE holder = getDataElementCreateTime();
+        holder.setValue(createTime);
+    }
+    public int getCreateTime () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        HLAinteger32BE holder = getDataElementCreateTime();
+        return holder.getValue();
     }
 
-    public void setUniqueId (UUIDStruct uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+    public HLAfixedArray<HLAbyte> getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        HLAfixedArray<HLAbyte> holder = (HLAfixedArray<HLAbyte>) getAttribute(AttributeName.UniqueId.name());
+        if (holder == null) {
+            holder = encoderFactory.createHLAfixedArray(byteFactory, 16);
+            setAttributeValue(AttributeName.UniqueId.name(), holder);
+        }
+        return holder;
+    }
+    public void setUniqueId (HLAfixedArray<HLAbyte> uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         setAttributeValue(AttributeName.UniqueId.name(), uniqueId);
     }
 
-    public UUIDStruct getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
-        UUIDStruct aEntityIdentifier = (UUIDStruct) getAttribute(AttributeName.UniqueId.name());
-        if (aEntityIdentifier == null) {
-            aEntityIdentifier = (UUIDStruct) encoderFactory.createHLAfixedArray((DataElementFactory<HLAbyte>) encoderFactory, 16);
-            setUniqueId(aEntityIdentifier);
-        }
-        return aEntityIdentifier;
-    }
 }

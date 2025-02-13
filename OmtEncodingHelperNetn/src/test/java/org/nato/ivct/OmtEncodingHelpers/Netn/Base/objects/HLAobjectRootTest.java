@@ -1,5 +1,6 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.net.URL;
@@ -20,7 +21,10 @@ import hla.rti1516e.RTIambassador;
 import hla.rti1516e.ResignAction;
 import hla.rti1516e.RtiFactory;
 import hla.rti1516e.RtiFactoryFactory;
+import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.EncoderException;
+import hla.rti1516e.encoding.HLAbyte;
+import hla.rti1516e.encoding.HLAfixedArray;
 import hla.rti1516e.exceptions.AlreadyConnected;
 import hla.rti1516e.exceptions.CallNotAllowedFromWithinCallback;
 import hla.rti1516e.exceptions.ConnectionFailed;
@@ -93,12 +97,10 @@ public class HLAobjectRootTest {
     
 
     @Test
-    void testGetCreateTime() {
-        EpochTimeStruct value;
+    void testSetAndGetCreateTime() {
         try {
-            value = hlaobjectRoot.getCreateTime();
-            value.setValue(1234);
-            hlaobjectRoot.setCreateTime(value);
+            hlaobjectRoot.setCreateTime(1234);
+            assertTrue(1234 == hlaobjectRoot.getCreateTime());
         } catch (NameNotFound | InvalidObjectClassHandle | FederateNotExecutionMember | NotConnected | RTIinternalError
                 | EncoderException e) {
             e.printStackTrace();
@@ -107,17 +109,16 @@ public class HLAobjectRootTest {
     }
 
     @Test
-    void testGetUniqueId() {
-
+    void testSetAndGetUniqueId() {
+        try {
+            HLAfixedArray<HLAbyte> value = hlaobjectRoot.getUniqueId();
+            value.decode("0123456789012345".getBytes());
+            hlaobjectRoot.setUniqueId(value);
+        } catch (NameNotFound | InvalidObjectClassHandle | FederateNotExecutionMember | NotConnected | RTIinternalError
+                | EncoderException | DecoderException e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
-    @Test
-    void testSetCreateTime() {
-
-    }
-
-    @Test
-    void testSetUniqueId() {
-
-    }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2022, Reinhard Herzog (Fraunhofer IOSB)
+ * Copyright 2025, Reinhard Herzog (Fraunhofer IOSB)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -102,7 +102,6 @@ public class HLAobjectRoot extends HLAroot {
                     knownAttributeHandles.put(thisClassHandle, new HashMap<>());
                 }
                 thisObjectHandle = null; // undefined until object is registered
-                // this.attributeValues = rtiAmbassador.getAttributeHandleValueMapFactory().create(0);
                 encoderFactory = RtiFactoryFactory.getRtiFactory().getEncoderFactory();
             } catch (Exception e) {
                 throw new OmtEncodingHelperException("unhandled HLA exception", e);

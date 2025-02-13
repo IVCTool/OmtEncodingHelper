@@ -24,7 +24,7 @@ public class NetnFomFilesTest {
     @Test
     public void testAddNetnSmc() {
         netnFomFiles = new NetnFomFiles();
-        netnFomFiles.addNetnBase();
+        netnFomFiles.addNetnSmc();
         URL[] fomList = netnFomFiles.get();
         assertTrue(fomList[0].toString().endsWith("NETN-SMC.xml"));
         assertTrue(fomList.length > 0);
@@ -33,7 +33,7 @@ public class NetnFomFilesTest {
     @Test
     public void testAddNetnEtr() {
         netnFomFiles = new NetnFomFiles();
-        netnFomFiles.addNetnBase();
+        netnFomFiles.addNetnEtr();
         URL[] fomList = netnFomFiles.get();
         assertTrue(fomList[0].toString().endsWith("NETN-ETR.xml"));
         assertTrue(fomList.length > 0);
