@@ -90,15 +90,27 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         return holder.getValue();
     }
 
-    public HLAfixedArray<HLAbyte> getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
-        HLAfixedArray<HLAbyte> holder = (HLAfixedArray<HLAbyte>) getAttribute(AttributeName.UniqueId.name());
+    // public HLAfixedArray<HLAbyte> getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+    //     HLAfixedArray<HLAbyte> holder = (HLAfixedArray<HLAbyte>) getAttribute(AttributeName.UniqueId.name());
+    //     if (holder == null) {
+    //         holder = encoderFactory.createHLAfixedArray(byteFactory, 16);
+    //         setAttributeValue(AttributeName.UniqueId.name(), holder);
+    //     }
+    //     return holder;
+    // }
+    // public void setUniqueId (HLAfixedArray<HLAbyte> uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+    //     setAttributeValue(AttributeName.UniqueId.name(), uniqueId);
+    // }
+
+    public UUIDStruct getUniqueId () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        UUIDStruct holder = (UUIDStruct) getAttribute(AttributeName.UniqueId.name());
         if (holder == null) {
-            holder = encoderFactory.createHLAfixedArray(byteFactory, 16);
+            holder = new UUIDStruct();
             setAttributeValue(AttributeName.UniqueId.name(), holder);
         }
         return holder;
     }
-    public void setUniqueId (HLAfixedArray<HLAbyte> uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+    public void setUniqueId (UUIDStruct uniqueId) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         setAttributeValue(AttributeName.UniqueId.name(), uniqueId);
     }
 

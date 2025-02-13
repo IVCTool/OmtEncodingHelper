@@ -16,8 +16,66 @@
 
  package org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes;
 
+import hla.rti1516e.RtiFactoryFactory;
+import hla.rti1516e.encoding.ByteWrapper;
+import hla.rti1516e.encoding.DecoderException;
+import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAinteger32BE;
+import hla.rti1516e.exceptions.RTIinternalError;
 
-public interface EpochTimeStruct extends HLAinteger32BE {
+
+/**
+ * Helper Classes for NETN-BASE Datatypes
+ * 
+ * DEPRECATED: Use HLAinteger32BE instead
+ */
+
+@Deprecated
+public class EpochTimeStruct implements HLAinteger32BE {
+
+    HLAinteger32BE value;
+
+    public EpochTimeStruct() throws RTIinternalError {
+        value = RtiFactoryFactory.getRtiFactory().getEncoderFactory().createHLAinteger32BE();
+    }
+    @Override
+    public int getOctetBoundary() {
+        return value.getOctetBoundary();
+    }
+
+    @Override
+    public void encode(ByteWrapper byteWrapper) throws EncoderException {
+        value.encode(byteWrapper);
+    }
+
+    @Override
+    public int getEncodedLength() {
+        return value.getEncodedLength();
+    }
+
+    @Override
+    public byte[] toByteArray() throws EncoderException {
+        return value.toByteArray();
+    }
+
+    @Override
+    public void decode(ByteWrapper byteWrapper) throws DecoderException {
+        value.decode(byteWrapper);
+    }
+
+    @Override
+    public void decode(byte[] bytes) throws DecoderException {
+        value.decode(bytes);
+    }
+
+    @Override
+    public int getValue() {
+        return value.getValue();
+    }
+
+    @Override
+    public void setValue(int i) {
+        value.setValue(i);
+    }
 
 }

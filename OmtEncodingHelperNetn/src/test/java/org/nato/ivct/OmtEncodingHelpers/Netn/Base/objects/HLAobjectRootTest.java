@@ -11,9 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Netn.NetnFomFiles;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import hla.rti1516.jlc.HLAoctet;
 import hla.rti1516e.CallbackModel;
 import hla.rti1516e.FederateAmbassador;
 import hla.rti1516e.NullFederateAmbassador;
@@ -24,6 +26,7 @@ import hla.rti1516e.RtiFactoryFactory;
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAbyte;
+import hla.rti1516e.encoding.ByteWrapper;
 import hla.rti1516e.encoding.HLAfixedArray;
 import hla.rti1516e.exceptions.AlreadyConnected;
 import hla.rti1516e.exceptions.CallNotAllowedFromWithinCallback;
@@ -104,20 +107,28 @@ public class HLAobjectRootTest {
         } catch (NameNotFound | InvalidObjectClassHandle | FederateNotExecutionMember | NotConnected | RTIinternalError
                 | EncoderException e) {
             e.printStackTrace();
-            fail();
+            fail(e.getMessage());
         }
     }
 
     @Test
     void testSetAndGetUniqueId() {
         try {
-            HLAfixedArray<HLAbyte> value = hlaobjectRoot.getUniqueId();
-            value.decode("0123456789012345".getBytes());
-            hlaobjectRoot.setUniqueId(value);
+            UUIDStruct value1 = hlaobjectRoot.getUniqueId();
+            value1.decode("0123456789012345".getBytes());
+            ByteWrapper byteWrapper = new ByteWrapper(new byte[16]);
+            UUIDStruct value2 = new UUIDStruct();
+            value1.encode(byteWrapper);
+            byteWrapper.reset();
+            value2.decode(byteWrapper);
+            hlaobjectRoot.setUniqueId(value2);
+            UUIDStruct uuid = hlaobjectRoot.getUniqueId();
+            log.info("UUID value = " + uuid);
+            assertTrue(value1.size() == value2.size());
         } catch (NameNotFound | InvalidObjectClassHandle | FederateNotExecutionMember | NotConnected | RTIinternalError
                 | EncoderException | DecoderException e) {
             e.printStackTrace();
-            fail();
+            fail(e.getMessage());
         }
     }
 
