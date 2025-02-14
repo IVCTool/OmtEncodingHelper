@@ -45,7 +45,7 @@ public enum TaskModeEnum8 {
         }
     }
 
-    synchronized public byte getValue() {
+    public byte getValue() {
         return value.getValue();
     }
 
