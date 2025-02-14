@@ -6,21 +6,10 @@ import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.HLAoctet;
 
 /**
+ * Specifies if task execution is in non-concurrent or concurrent mode.
  * 
-            <enumeratedData>
-                <name>TaskModeEnum8</name>
-                <representation>HLAoctet</representation>
-                <semantics>Specifies if task execution is in non-concurrent or concurrent mode.</semantics>
-                <enumerator>
-                    <name>NonConcurrentMode</name>
-                    <value>0</value>
-                </enumerator>
-                <enumerator>
-                    <name>ConcurrentMode</name>
-                    <value>1</value>
-                </enumerator>
-            </enumeratedData>
-
+ * <representation>HLAoctet</representation>
+ * 
  */
 public enum TaskModeEnum8 {
     NonConcurrentMode((byte) 0),

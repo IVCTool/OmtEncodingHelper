@@ -6,37 +6,10 @@ import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.HLAinteger32BE;
 
 /**
+ * The status of a task.
  * 
-            <enumeratedData>
-                <name>TaskStatusEnum32</name>
-                <representation>HLAinteger32BE</representation>
-                <semantics>The status of a task.</semantics>
-                <enumerator>
-                    <name>Accepted</name>
-                    <value>0</value>
-                </enumerator>
-                <enumerator>
-                    <name>Refused</name>
-                    <value>1</value>
-                </enumerator>
-                <enumerator>
-                    <name>Cancelled</name>
-                    <value>2</value>
-                </enumerator>
-                <enumerator>
-                    <name>Executing</name>
-                    <value>3</value>
-                </enumerator>
-                <enumerator>
-                    <name>Completed</name>
-                    <value>4</value>
-                </enumerator>
-                <enumerator>
-                    <name>Error</name>
-                    <value>5</value>
-                </enumerator>
-            </enumeratedData>
-
+ * <representation>HLAinteger32BE</representation>
+ * 
  */
 public enum TaskStatusEnum32 {
     Accepted(0),
