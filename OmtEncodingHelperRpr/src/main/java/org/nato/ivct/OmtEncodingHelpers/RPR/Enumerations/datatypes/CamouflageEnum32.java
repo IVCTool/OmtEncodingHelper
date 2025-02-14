@@ -46,7 +46,7 @@ public enum CamouflageEnum32 {
             case 2: return WinterCamouflage;
             case 3: return ForestCamouflage;
             case 4: return GenericCamouflage;
-            default: return null;
+            default: throw new IllegalArgumentException("Unknown value: " + de.getValue());
         }
     }
 
