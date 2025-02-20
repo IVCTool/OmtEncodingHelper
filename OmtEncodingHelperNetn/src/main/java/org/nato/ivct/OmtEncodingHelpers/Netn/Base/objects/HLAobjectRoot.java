@@ -75,6 +75,8 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         };
     }
 
+    /* publish and subscribe helper methods */
+
     public void publishCreateTime() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
         addPubAttribute(HLAobjectRoot.AttributeName.CreateTime.name());
     }
