@@ -62,6 +62,10 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
      */
     public HLAobjectRoot() throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         super();
+        // initialize the attributes and ignore the return values
+        getCreateTime();
+        getUniqueId();
+        // initialize the byte factory
         byteFactory = new DataElementFactory<HLAbyte>()
         {
             public HLAbyte createElement(int index)
@@ -70,6 +74,23 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
             }            
         };
     }
+
+    public void publishCreateTime() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addPubAttribute(HLAobjectRoot.AttributeName.CreateTime.name());
+    }
+
+    public void subscribeCreateTime() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addSubAttribute(HLAobjectRoot.AttributeName.CreateTime.name());
+    }
+
+    public void publishUniqueId() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addPubAttribute(HLAobjectRoot.AttributeName.UniqueId.name());
+    }
+
+    public void subscribeUniqueId() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addSubAttribute(HLAobjectRoot.AttributeName.UniqueId.name());
+    }
+    
 
     /* Getter and Setter methods */
 
@@ -84,6 +105,7 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
     public void setCreateTime (int createTime) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         HLAinteger32BE holder = getDataElementCreateTime();
         holder.setValue(createTime);
+        setAttributeValue(AttributeName.CreateTime.name(), holder);
     }
     public int getCreateTime () throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         HLAinteger32BE holder = getDataElementCreateTime();
