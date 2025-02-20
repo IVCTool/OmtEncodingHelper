@@ -18,7 +18,6 @@ import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 
 import hla.rti1516e.InteractionClassHandle;
-import hla.rti1516e.InteractionClassHandleFactory;
 import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.encoding.HLAbyte;
 import hla.rti1516e.encoding.HLAvariableArray;

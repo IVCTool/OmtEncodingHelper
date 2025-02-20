@@ -16,13 +16,11 @@ package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
-import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 
 import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAbyte;
-import hla.rti1516e.encoding.HLAfixedArray;
 import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.InvalidObjectClassHandle;

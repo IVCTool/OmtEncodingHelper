@@ -14,10 +14,6 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes;
 
-import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct.AttributeName;
-
-import hla.rti1516e.encoding.HLAinteger16BE;
-import hla.rti1516e.encoding.HLAoctet;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 /** 

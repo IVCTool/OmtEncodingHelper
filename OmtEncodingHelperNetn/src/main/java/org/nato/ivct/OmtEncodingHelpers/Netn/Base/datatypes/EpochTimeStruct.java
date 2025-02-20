@@ -27,10 +27,9 @@ import hla.rti1516e.exceptions.RTIinternalError;
 /**
  * Helper Classes for NETN-BASE Datatypes
  * 
- * DEPRECATED: Use HLAinteger32BE instead
+ * Should we use base class HLAinteger32BE instead?
  */
 
-@Deprecated
 public class EpochTimeStruct implements HLAinteger32BE {
 
     HLAinteger32BE value;

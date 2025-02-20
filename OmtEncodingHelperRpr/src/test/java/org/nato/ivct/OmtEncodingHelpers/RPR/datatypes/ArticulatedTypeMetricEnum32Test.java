@@ -21,9 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedTypeMetricEnum32;
 
-import hla.rti1516e.encoding.DecoderException;
-import hla.rti1516e.exceptions.RTIinternalError;
-
 public class ArticulatedTypeMetricEnum32Test {
     @Test
     void testGetValue() {

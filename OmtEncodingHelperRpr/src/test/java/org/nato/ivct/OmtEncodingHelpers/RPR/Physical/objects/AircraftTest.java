@@ -24,7 +24,6 @@ import org.nato.ivct.OmtEncodingHelpers.RPR.RprFomFiles;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity;
-import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Aircraft;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Platform.Attributes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

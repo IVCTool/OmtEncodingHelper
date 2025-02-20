@@ -1,12 +1,10 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn;
 
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 

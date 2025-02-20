@@ -123,6 +123,7 @@ public class HLAfederate extends HLAmanager {
 
     public HLAfederate() throws OmtEncodingHelperException {
         super();
+        log.trace("HLAfederate()");
         DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
         {
             public HLAbyte createElement(int index)
@@ -140,28 +141,32 @@ public class HLAfederate extends HLAmanager {
 
     public static void addPub(Attributes attribute) throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle,
             FederateNotExecutionMember, NotConnected, RTIinternalError {
-        if (anchor == null)
-            anchor = new HLAfederate();
+        log.trace("addPub()" + attribute.toString() + ")");
+        if (anchor == null) anchor = new HLAfederate();
         anchor.addPubAttribute(attribute.name());
     }
     
     public static void addSub(Attributes attribute) throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle,
-            FederateNotExecutionMember, NotConnected, RTIinternalError {
-        if (anchor == null)
-            anchor = new HLAfederate();
+            FederateNotExecutionMember, NotConnected, RTIinternalError 
+    {
+        log.trace("addSub()" + attribute.toString() + ")");
+        if (anchor == null) anchor = new HLAfederate();
         anchor.addSubAttribute(attribute.name());
     }
 
     public static void sub() throws OmtEncodingHelperException, AttributeNotDefined, ObjectClassNotDefined, SaveInProgress,
-            RestoreInProgress, FederateNotExecutionMember, NotConnected, RTIinternalError {
-        if (anchor == null)
-            anchor = new HLAfederate();
+            RestoreInProgress, FederateNotExecutionMember, NotConnected, RTIinternalError 
+    {
+        log.trace("sub()");
+        if (anchor == null) anchor = new HLAfederate();
         anchor.subscribe();
     }
 
     public static HLAfederate discover(ObjectInstanceHandle theObject, ObjectClassHandle theObjectClass)
             throws InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError,
-            OmtEncodingHelperException {
+            OmtEncodingHelperException 
+    {
+        log.trace("discover(" + theObject.toString() + ", " + theObjectClass.toString() + ")");
         String receivedClass = HLAroot.getRtiAmbassador().getObjectClassName(theObjectClass);
         if (receivedClass.equalsIgnoreCase(anchor.getHlaClassName())) {
             return get(theObject);
@@ -169,7 +174,9 @@ public class HLAfederate extends HLAmanager {
         return null;
     }
 
-    public static HLAfederate get(ObjectInstanceHandle theObject) throws OmtEncodingHelperException {
+    public static HLAfederate get(ObjectInstanceHandle theObject) throws OmtEncodingHelperException 
+    {
+        log.trace("get(" + theObject.toString() + ")");
         HLAfederate localRef = null;
         localRef = knownObjects.get(theObject);
         if (localRef == null) {

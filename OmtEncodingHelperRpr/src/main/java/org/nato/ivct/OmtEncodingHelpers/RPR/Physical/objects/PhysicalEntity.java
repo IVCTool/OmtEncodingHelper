@@ -16,12 +16,7 @@
 
  package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects;
 
-import java.util.ArrayList;
-
-import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
-import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedParameterStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.ArticulatedParameterStructLengthlessArray;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityTypeStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.CamouflageEnum32;
@@ -34,9 +29,7 @@ import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.EncoderException;
 import hla.rti1516e.encoding.HLAboolean;
 import hla.rti1516e.encoding.HLAinteger16BE;
-import hla.rti1516e.encoding.HLAoctet;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
-import hla.rti1516e.exceptions.FederationExecutionAlreadyExists;
 import hla.rti1516e.exceptions.InvalidObjectClassHandle;
 import hla.rti1516e.exceptions.NameNotFound;
 import hla.rti1516e.exceptions.NotConnected;

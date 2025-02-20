@@ -17,9 +17,6 @@ package org.nato.ivct.OmtEncodingHelpers.RPR.Physical.datatypes;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
 import org.nato.ivct.OmtEncodingHelpers.RPR.Enumerations.datatypes.MarkingEncodingEnum8;
 
-import hla.rti1516e.encoding.HLAfixedArray;
-import hla.rti1516e.encoding.HLAinteger16BE;
-import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.encoding.HLAoctet;
 import hla.rti1516e.exceptions.RTIinternalError;
 
