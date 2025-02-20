@@ -37,24 +37,20 @@ public class RprFomFiles {
      * creates temporary file copies in the user tmp directory. This
      * is required as some RTIs are not supporting the "jar" access
      * protocol to the module files.
-      */    
-    protected URL createTempFile (String resource, String suffix) {
-        try {
-            log.trace("using {}{}", resource, suffix);
-            URL fom = RprFomFiles.class.getResource("/" + resource + suffix);
-            File temp = File.createTempFile(prefix + resource, suffix);
-            byte[] resourceFileBytes = fom.openStream().readAllBytes();
-            Files.write(temp.toPath(), resourceFileBytes);
-            temp.deleteOnExit();
-            return temp.toURI().toURL();
-        } catch (IOException e) {
-            log.error("error while creating temporary OMT files", e);
-        }
-        return null;
+     * @throws IOException 
+     */    
+    protected URL createTempFile (String resource, String suffix) throws IOException {
+        log.trace("using {}{}", resource, suffix);
+        URL fom = RprFomFiles.class.getResource("/" + resource + suffix);
+        File temp = File.createTempFile(prefix + resource, suffix);
+        byte[] resourceFileBytes = fom.openStream().readAllBytes();
+        Files.write(temp.toPath(), resourceFileBytes);
+        temp.deleteOnExit();
+        return temp.toURI().toURL();
     }
 
     /** 
-     * FIXME: thats the way, it should be done - but the temporary file names causes issues with the MAK RTI ?!?
+     * FIXME: that how it need to be done with MAK RTI
      */    
     protected URL createTempFileLegacy (String resource, String suffix) {
         try {
@@ -90,7 +86,7 @@ public class RprFomFiles {
         return this;
     }
     
-    public RprFomFiles addTmpRPR_BASE() {
+    public RprFomFiles addTmpRPR_BASE() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Base_v2.0",".xml"));
         return this;
     }
@@ -100,7 +96,7 @@ public class RprFomFiles {
         return this;
     }
     
-    public RprFomFiles addTmpRPR_Enumerations() {
+    public RprFomFiles addTmpRPR_Enumerations() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Enumerations_v2.0", ".xml"));
         return this;
     }
@@ -110,7 +106,7 @@ public class RprFomFiles {
         return this;
     }
     
-    public RprFomFiles addTmpRPR_Switches() {
+    public RprFomFiles addTmpRPR_Switches() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Switches_v2.0", ".xml"));
         return this;
     }
@@ -120,7 +116,7 @@ public class RprFomFiles {
         return this;
     }
     
-    public RprFomFiles addTmpRPR_Foundation() {
+    public RprFomFiles addTmpRPR_Foundation() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Foundation_v2.0", ".xml"));
         return this;
     }
@@ -130,7 +126,7 @@ public class RprFomFiles {
         return this;
     }
 
-    public RprFomFiles addTmpRPR_Physical() {
+    public RprFomFiles addTmpRPR_Physical() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Physical_v2.0", ".xml"));
         return this;
     }
@@ -140,7 +136,7 @@ public class RprFomFiles {
         return this;
     }
 
-    public RprFomFiles addTmpRPR_Warfare() {
+    public RprFomFiles addTmpRPR_Warfare() throws IOException {
         fomList.add(createTempFile("RPR-FOM-v2.0/RPR-Warfare_v2.0", ".xml"));
         return this;
     }

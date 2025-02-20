@@ -27,6 +27,8 @@ import org.nato.ivct.OmtEncodingHelpers.RPR.Physical.objects.Aircraft;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
 import java.net.URL;
 import hla.rti1516e.AttributeHandleValueMap;
 import hla.rti1516e.CallbackModel;
@@ -66,7 +68,7 @@ public class BaseEntityTest {
     static RTIambassador rtiAmbassador = null;
 
     @BeforeAll
-    static void createRtiAmbassador() throws ConnectionFailed, InvalidLocalSettingsDesignator, UnsupportedCallbackModel, AlreadyConnected, CallNotAllowedFromWithinCallback, RTIinternalError, InconsistentFDD, ErrorReadingFDD, CouldNotOpenFDD, NotConnected, CouldNotCreateLogicalTimeFactory, FederationExecutionDoesNotExist, SaveInProgress, RestoreInProgress, FederateAlreadyExecutionMember, FederateNameAlreadyInUse {
+    static void createRtiAmbassador() throws ConnectionFailed, InvalidLocalSettingsDesignator, UnsupportedCallbackModel, AlreadyConnected, CallNotAllowedFromWithinCallback, RTIinternalError, InconsistentFDD, ErrorReadingFDD, CouldNotOpenFDD, NotConnected, CouldNotCreateLogicalTimeFactory, FederationExecutionDoesNotExist, SaveInProgress, RestoreInProgress, FederateAlreadyExecutionMember, FederateNameAlreadyInUse, IOException {
         RtiFactory rtiFactory = RtiFactoryFactory.getRtiFactory();
         rtiAmbassador = rtiFactory.getRtiAmbassador();
         FederateAmbassador nullAmbassador = new NullFederateAmbassador();
