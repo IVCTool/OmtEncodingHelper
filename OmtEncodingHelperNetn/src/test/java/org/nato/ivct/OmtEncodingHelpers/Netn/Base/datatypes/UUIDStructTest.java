@@ -70,38 +70,4 @@ public class UUIDStructTest extends HLAobjectRootBaseTests {
         }
 }
 
-    @Test
-    void testGet() {
-
-    }
-
-    @Test
-    void testGetEncodedLength() {
-
-    }
-
-    @Test
-    void testGetOctetBoundary() {
-
-    }
-
-    @Test
-    void testIterator() {
-
-    }
-
-    @Test
-    void testSize() {
-
-    }
-
-    @Test
-    void testToByteArray() {
-
-    }
-
-    @Test
-    void testToString() {
-
-    }
 }
