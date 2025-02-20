@@ -14,7 +14,7 @@
     limitations under the License. 
  */
 
- package org.nato.ivct.OmtEncodingHelpers.Smc.Base.datatypes;
+ package org.nato.ivct.OmtEncodingHelpers.Netn.Smc.datatypes;
 
 public class EntityControlActionsStruct {
 
