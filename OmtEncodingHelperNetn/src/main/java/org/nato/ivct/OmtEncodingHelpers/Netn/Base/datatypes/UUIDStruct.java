@@ -37,6 +37,10 @@ public class UUIDStruct implements HLAfixedArray<HLAbyte> {
         }            
     };
 
+    public UUIDStruct () throws RTIinternalError {
+        value = RtiFactoryFactory.getRtiFactory().getEncoderFactory().createHLAfixedArray(byteFactory, 16);
+    }
+
     /**
      * Returns the value of this UUID as a String.
      */
@@ -50,10 +54,6 @@ public class UUIDStruct implements HLAfixedArray<HLAbyte> {
             }
         }
         return result;
-    }
-
-    public UUIDStruct () throws RTIinternalError {
-        value = RtiFactoryFactory.getRtiFactory().getEncoderFactory().createHLAfixedArray(byteFactory, 16);
     }
 
     @Override
