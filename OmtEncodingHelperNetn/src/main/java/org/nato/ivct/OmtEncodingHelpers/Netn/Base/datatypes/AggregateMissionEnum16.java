@@ -728,12 +728,12 @@ public enum AggregateMissionEnum16 {
         }
     }
 
-    public int getValue() {
-        return value.getValue();
-    }
-
     public DataElement getDataElement() {
         return value;
+    }
+
+    public int getValue() {
+        return value.getValue();
     }
 
 }

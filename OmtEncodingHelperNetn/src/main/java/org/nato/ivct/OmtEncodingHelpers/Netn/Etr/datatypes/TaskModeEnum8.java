@@ -2,6 +2,7 @@ package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 
+import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.HLAoctet;
 
@@ -32,6 +33,10 @@ public enum TaskModeEnum8 {
             default:
                 throw new IllegalArgumentException("Unknown value: " + de.getValue());
         }
+    }
+
+    public DataElement getDataElement() {
+        return value;
     }
 
     public byte getValue() {
