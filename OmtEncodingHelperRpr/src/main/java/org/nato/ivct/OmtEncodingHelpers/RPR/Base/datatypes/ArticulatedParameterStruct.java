@@ -15,14 +15,11 @@ limitations under the License. */
 package org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.EntityIdentifierStruct.AttributeName;
 
 import hla.rti1516e.encoding.HLAinteger16BE;
 import hla.rti1516e.encoding.HLAoctet;
 import hla.rti1516e.exceptions.RTIinternalError;
 
-public class ArticulatedParameterStruct extends HLAfixedRecordStruct { 
-    
     /** 
      *  (see RPR-Base_v2.0.xml)
      <fixedRecordData>
@@ -52,21 +49,18 @@ public class ArticulatedParameterStruct extends HLAfixedRecordStruct {
     
      
     */
-
+    public class ArticulatedParameterStruct extends HLAfixedRecordStruct { 
+    
     enum AttributeName {
         ArticulatedParameterChange,     // Octet
-        PartAttachedTo,                        // UnsignedInteger16
-        ParameterValue                      // ParameterValueVariantStruct        
+        PartAttachedTo,                 // UnsignedInteger16
+        ParameterValue                  // ParameterValueVariantStruct        
     }
 
     public ArticulatedParameterStruct () throws RTIinternalError {
         super();
         add(AttributeName.ArticulatedParameterChange.name(), encoderFactory.createHLAoctet() );
-        
-        //TODo  what is a UnsignedInteger16  ? , is HLAinteger16 correct for UnsignedInteger16 ?
         add(AttributeName.PartAttachedTo.name(), encoderFactory.createHLAinteger16BE() );
-        
-        // TODO   create ParameterValueVariantStruct and its .....
         add(AttributeName.ParameterValue.name(), new ParameterValueVariantStruct() );
     }    
     
