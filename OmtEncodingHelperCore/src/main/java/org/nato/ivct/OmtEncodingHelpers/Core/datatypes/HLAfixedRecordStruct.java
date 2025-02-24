@@ -57,7 +57,7 @@ public class HLAfixedRecordStruct implements DataElement {
         for (NamedDataElement d: data) {
             if (name.equals(d.name)) return d.element;
         }
-        return null;
+        throw new IllegalArgumentException("value " + name + " not found");
     }
 
     public void set (String name, DataElement element) {
