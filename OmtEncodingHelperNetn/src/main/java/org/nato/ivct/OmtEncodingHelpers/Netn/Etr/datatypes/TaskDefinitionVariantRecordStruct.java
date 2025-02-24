@@ -139,49 +139,20 @@ public class TaskDefinitionVariantRecordStruct extends HLAfixedRecordStruct {
     public TaskDefinitionVariantRecordStruct () throws RTIinternalError {
         super();
         
-        // TODO  create EmptyTaskStruct
         add(TaskType.Detach.name(), new EmptyTaskStruct() );
-        
-        // ToDo create DirectFireTaskStruct
         add(TaskType.DirectFire.name(), new DirectFireTaskStruct() );
-        
-        // ToDo create IndirectFireTaskStruct
         add(TaskType.IndirectFire.name(), new IndirectFireTaskStruct() );
-        
-        // ToDo create FollowEntityTaskStruct
         add(TaskType.FollowEntity.name(), new FollowEntityTaskStruct() );
-        
-        // ToDo create MoveInDirectionTaskStruct
         add(TaskType.MoveInDirection.name(), new MoveInDirectionTaskStruct() );
-        
-        // ToDo create MoveIntoFormationTaskStruct
         add(TaskType.MoveIntoFormation.name(), new MoveIntoFormationTaskStruct() );
-        
-        // ToDo create MoveToLocationTaskStruct
         add(TaskType.MoveToLocation.name(), new MoveToLocationTaskStruct() );
-        
-        // ToDo create AttachTaskStruct
         add(TaskType.Attach.name(), new AttachTaskStruct() );
-        
-        // ToDo create ObserveTaskStruct
         add(TaskType.Observe.name(), new ObserveTaskStruct() );
-        
-        // ToDo create OperateCheckpointTaskStruct
         add(TaskType.OperateCheckpoint.name(), new OperateCheckpointTaskStruct() );
-        
-        // ToDo create PatrolTaskStruct
         add(TaskType.Patrol.name(), new PatrolTaskStruct() );
-        
-        // ToDo create ChangeAltitudeTaskStruct
         add(TaskType.ChangeAltitude.name(), new ChangeAltitudeTaskStruct() );
-        
-        // ToDo create ChangeSpeedTaskStruct
         add(TaskType.ChangeSpeed.name(), new ChangeSpeedTaskStruct() );
-        
-        // ToDo create ChangeHeadingTaskStruct
         add(TaskType.ChangeHeading.name(), new ChangeHeadingTaskStruct() );
-        
-        // ToDo create OtherActivityTaskStruct
         add(TaskType.OtherActivity.name(), new OtherActivityTaskStruct() );
         add(TaskType.OperateObservationPost.name(), new OperateObservationPostTaskStruct() );
         add(TaskType.SetRulesOfEngagement.name(), new ChangeRulesOfEngagementTaskStruct() );
