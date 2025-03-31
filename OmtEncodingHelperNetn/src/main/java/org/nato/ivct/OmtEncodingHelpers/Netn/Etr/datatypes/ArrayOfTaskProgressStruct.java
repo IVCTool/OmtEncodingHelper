@@ -8,7 +8,7 @@ import hla.rti1516e.exceptions.RTIinternalError;
  * TODO TaskDefinitionVariantRecordStruct
  * 
  */
-public class ArrayOfTaskProgressStruct extends HLAvariantRecordStruct {
+public class ArrayOfTaskProgressStruct extends HLAvariantRecordStruct<TaskProgress> {
     
     public ArrayOfTaskProgressStruct () throws RTIinternalError {
         super();
