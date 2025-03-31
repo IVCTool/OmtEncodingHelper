@@ -145,16 +145,16 @@ public class PhysicalEntityTest {
             .get();        
         rtiAmbassador.connect(nullAmbassador, CallbackModel.HLA_IMMEDIATE);
         try {
-            rtiAmbassador.createFederationExecution("TestFederation", fomList);
+            rtiAmbassador.createFederationExecution("TestFederation-Rpr6", fomList);
         } catch (FederationExecutionAlreadyExists ignored) { }
-        rtiAmbassador.joinFederationExecution("InteractionTest", "TestFederation", fomList);
+        rtiAmbassador.joinFederationExecution("InteractionTest", "TestFederation-Rpr6", fomList);
     }
 
     @AfterAll
     static void leaveFederation() throws InvalidResignAction, OwnershipAcquisitionPending, FederateOwnsAttributes, FederateNotExecutionMember, NotConnected, CallNotAllowedFromWithinCallback, RTIinternalError, FederationExecutionDoesNotExist, FederateIsExecutionMember {
         rtiAmbassador.resignFederationExecution(ResignAction.DELETE_OBJECTS);
         try {
-            rtiAmbassador.destroyFederationExecution("TestFederation");
+            rtiAmbassador.destroyFederationExecution("TestFederation-Rpr6");
         } catch (FederatesCurrentlyJoined ignored) {
             log.trace("leave federation open for remaining federates");
         }

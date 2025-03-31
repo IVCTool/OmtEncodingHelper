@@ -85,9 +85,9 @@ public class AircraftTest {
 
         rtiAmbassador.connect(nullAmbassador, CallbackModel.HLA_IMMEDIATE);
         try {
-            rtiAmbassador.createFederationExecution("TestFederation", fomList);
+            rtiAmbassador.createFederationExecution("TestFederation-Rpr5", fomList);
         } catch (FederationExecutionAlreadyExists ignored) { }
-        rtiAmbassador.joinFederationExecution("BaseEntityTest", "UnitTest", "TestFederation");
+        rtiAmbassador.joinFederationExecution("BaseEntityTest", "UnitTest", "TestFederation-Rpr5");
         HLAobjectRoot.initialize(rtiAmbassador);
     }
 
@@ -95,7 +95,7 @@ public class AircraftTest {
     static void leaveFederation() throws InvalidResignAction, OwnershipAcquisitionPending, FederateOwnsAttributes, FederateNotExecutionMember, NotConnected, CallNotAllowedFromWithinCallback, RTIinternalError, FederationExecutionDoesNotExist, FederateIsExecutionMember {
         rtiAmbassador.resignFederationExecution(ResignAction.DELETE_OBJECTS);
         try {
-            rtiAmbassador.destroyFederationExecution("TestFederation");
+            rtiAmbassador.destroyFederationExecution("TestFederation-Rpr5");
         } catch (FederatesCurrentlyJoined ignored) {
             log.trace("leave federation open for remaining federates");
         }

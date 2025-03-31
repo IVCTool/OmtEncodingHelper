@@ -42,9 +42,9 @@ public class HLAreportInteractionPublicationTest {
 
         rtiAmbassador.connect(nullAmbassador, CallbackModel.HLA_IMMEDIATE);
         try {
-            rtiAmbassador.createFederationExecution("TestFederation", fomList);
+            rtiAmbassador.createFederationExecution("TestFederation-Rpr3", fomList);
         } catch (FederationExecutionAlreadyExists ignored) { }
-        rtiAmbassador.joinFederationExecution("HLAreportInteractionPublicationTest", "UnitTest", "TestFederation");
+        rtiAmbassador.joinFederationExecution("HLAreportInteractionPublicationTest", "UnitTest", "TestFederation-Rpr3");
         HLAroot.initialize(rtiAmbassador);
     }
 
@@ -52,7 +52,7 @@ public class HLAreportInteractionPublicationTest {
     static void leaveFederation() throws InvalidResignAction, OwnershipAcquisitionPending, FederateOwnsAttributes, FederateNotExecutionMember, NotConnected, CallNotAllowedFromWithinCallback, RTIinternalError, FederationExecutionDoesNotExist, FederateIsExecutionMember {
         rtiAmbassador.resignFederationExecution(ResignAction.DELETE_OBJECTS);
         try {
-            rtiAmbassador.destroyFederationExecution("TestFederation");
+            rtiAmbassador.destroyFederationExecution("TestFederation-Rpr3");
         } catch (FederatesCurrentlyJoined ignored) {
             log.trace("leave federation open for remaining federates");
         }
