@@ -1,7 +1,13 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.LocationStruct;
 
+import hla.rti1516e.encoding.DataElement;
+import hla.rti1516e.encoding.DecoderException;
+import hla.rti1516e.encoding.EncoderException;
+import hla.rti1516e.encoding.HLAfixedRecord;
+import hla.rti1516e.encoding.HLAfloat32BE;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 /**
@@ -35,12 +41,51 @@ import hla.rti1516e.exceptions.RTIinternalError;
  */
 public class MoveToLocationTaskStruct extends HLAfixedRecordStruct {
 
-    public enum Attributes {
+    public enum AttributeName {
         Location, Path, MoveType, Speed
     }
 
     public MoveToLocationTaskStruct() throws RTIinternalError {
         super();
+        add(AttributeName.Location.name(), new LocationStruct());
+        add(AttributeName.Path.name(), new ArrayOfLocationStruct());
+        add(AttributeName.MoveType.name(), MoveTypeEnum32.CrossCountry.getDataElement());
+        add(AttributeName.Speed.name(), encoderFactory.createHLAfloat32BE());
     }
 
+    public MoveToLocationTaskStruct(HLAfixedRecord rec) throws RTIinternalError {
+        setLocation((LocationStruct)rec.get(0));
+        setPath((ArrayOfLocationStruct)rec.get(1));
+        set(AttributeName.MoveType.name(), rec.get(2));
+        setSpeed((HLAfloat32BE)rec.get(3));
+    }
+
+    public LocationStruct getLocation() {
+        return (LocationStruct)get(AttributeName.Location.name());
+    }
+    public void setLocation(LocationStruct loaction) {
+        set(AttributeName.Location.name(), loaction);
+    }    
+
+    public ArrayOfLocationStruct getPath() {
+        return (ArrayOfLocationStruct)get(AttributeName.Path.name());
+    }
+    public void setPath(ArrayOfLocationStruct arrayOfLocation) {
+        set(AttributeName.Path.name(), arrayOfLocation);
+    }
+
+    public MoveTypeEnum32 getMoveType() throws EncoderException, DecoderException {
+        DataElement de = get(AttributeName.MoveType.name());
+        return MoveTypeEnum32.decode(de.toByteArray());
+    }
+    public void setMoveType(MoveTypeEnum32 moveType) {
+        set(AttributeName.MoveType.name(), moveType.getDataElement());
+    }    
+
+    public HLAfloat32BE getSpeed() {
+        return (HLAfloat32BE)get(AttributeName.Speed.name());
+    }
+    public void setSpeed(HLAfloat32BE speed) {
+        set(AttributeName.Speed.name(), speed);
+    }    
 }

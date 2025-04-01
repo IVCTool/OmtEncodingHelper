@@ -1,7 +1,12 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
-import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
+import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAvariantRecordStruct;
 
+import hla.rti1516e.encoding.DataElement;
+import hla.rti1516e.encoding.DecoderException;
+import hla.rti1516e.encoding.HLAfixedRecord;
+import hla.rti1516e.encoding.HLAinteger32BE;
+import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 /**
@@ -130,32 +135,26 @@ import hla.rti1516e.exceptions.RTIinternalError;
             </variantRecordData>
 
  */
-public class TaskDefinitionVariantRecordStruct extends HLAfixedRecordStruct {
-    
-    public enum TaskType {
-        Detach, StopAtSideOfRoad, DirectFire, IndirectFire, FollowEntity, MoveInDirection, MoveIntoFormation, MoveToLocation, Attach, EnterFacility, Observe, OperateCheckpoint, Patrol, ChangeAltitude, ChangeSpeed, ChangeHeading, OtherActivity, OperateObservationPost, SetRulesOfEngagement, MagicMove, MoveByRoute
-    }
+public class TaskDefinitionVariantRecordStruct extends HLAvariantRecordStruct<HLAinteger32BE> {
 
     public TaskDefinitionVariantRecordStruct () throws RTIinternalError {
         super();
-        
-        add(TaskType.Detach.name(), new EmptyTaskStruct() );
-        add(TaskType.DirectFire.name(), new DirectFireTaskStruct() );
-        add(TaskType.IndirectFire.name(), new IndirectFireTaskStruct() );
-        add(TaskType.FollowEntity.name(), new FollowEntityTaskStruct() );
-        add(TaskType.MoveInDirection.name(), new MoveInDirectionTaskStruct() );
-        add(TaskType.MoveIntoFormation.name(), new MoveIntoFormationTaskStruct() );
-        add(TaskType.MoveToLocation.name(), new MoveToLocationTaskStruct() );
-        add(TaskType.Attach.name(), new AttachTaskStruct() );
-        add(TaskType.Observe.name(), new ObserveTaskStruct() );
-        add(TaskType.OperateCheckpoint.name(), new OperateCheckpointTaskStruct() );
-        add(TaskType.Patrol.name(), new PatrolTaskStruct() );
-        add(TaskType.ChangeAltitude.name(), new ChangeAltitudeTaskStruct() );
-        add(TaskType.ChangeSpeed.name(), new ChangeSpeedTaskStruct() );
-        add(TaskType.ChangeHeading.name(), new ChangeHeadingTaskStruct() );
-        add(TaskType.OtherActivity.name(), new OtherActivityTaskStruct() );
-        add(TaskType.OperateObservationPost.name(), new OperateObservationPostTaskStruct() );
-        add(TaskType.SetRulesOfEngagement.name(), new ChangeRulesOfEngagementTaskStruct() );
-        add(TaskType.MagicMove.name(), new MagicMoveTaskStruct() );
+    }
+
+    public void decode (byte[] bytes) throws DecoderException {
+        HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
+        decoder.decode(bytes);
+        int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
+        HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
+        setVariant(encoderFactory.createHLAinteger32BE(dv), rec);
+        try {
+            switch (dv) {
+                case 28: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveToLocationTaskStruct(rec));
+                case 29: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveByRouteTaskStruct(rec));
+                default: break;
+            }
+        } catch (RTIinternalError e) {
+            throw new DecoderException(e.getMessage());
+        }
     }
 }
