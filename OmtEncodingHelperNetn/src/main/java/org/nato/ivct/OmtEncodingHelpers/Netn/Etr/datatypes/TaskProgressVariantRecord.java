@@ -70,7 +70,7 @@ public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger
                     setMoveTaskProgress(dv, new MoveTaskProgressStruct(rec));
                     break;
                 case 33:
-                    setPatrolTaskProgress(dv, new PatrolTaskProgressStruct(rec))
+                    setPatrolTaskProgress(dv, new PatrolTaskProgressStruct(rec));
                 break;
                 default: break;
             }
