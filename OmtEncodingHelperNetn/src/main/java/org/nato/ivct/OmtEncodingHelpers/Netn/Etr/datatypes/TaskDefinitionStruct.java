@@ -100,6 +100,18 @@ public class TaskDefinitionStruct extends HLAfixedRecordStruct {
 
     public TaskDefinitionStruct () throws RTIinternalError {
         super();
+        add(AttributeName.TaskId.name(), new UUIDStruct());
+        add(AttributeName.TaskedEntity.name(), new UUIDStruct());
+        add(AttributeName.Tasker.name(), new CallSignStruct());
+        add(AttributeName.StartTime.name(), new EpochTimeStruct());
+        add(AttributeName.Annotation.name(), encoderFactory.createHLAunicodeString());
+        add(AttributeName.TaskMode.name(), encoderFactory.createHLAoctet());
+        add(AttributeName.Activity.name(), AggregateMissionEnum16.Other.getDataElement());
+        add(AttributeName.Status.name(), TaskStatusEnum32.Accepted.getDataElement());
+        add(AttributeName.TaskParameters.name(), new TaskDefinitionVariantRecordStruct());
+        add(AttributeName.MainTask.name(), new UUIDStruct());
+        add(AttributeName.PreviousTask.name(), new UUIDStruct());
+        add(AttributeName.NextTask.name(), new UUIDStruct());
     }    
     
     // getter and setter
@@ -165,12 +177,12 @@ public class TaskDefinitionStruct extends HLAfixedRecordStruct {
         set(AttributeName.Status.name(), status.getDataElement());
     }
     
-    // public Object getTaskParameters() {
-    //     return get(AttributeName.TaskParameters.name());
-    // }
-    // public void setTaskParameters(Object taskParameters) {
-    //     set(AttributeName.TaskParameters.name(), taskParameters);
-    // }
+    public TaskDefinitionVariantRecordStruct getTaskParameters() {
+        return (TaskDefinitionVariantRecordStruct)get(AttributeName.TaskParameters.name());
+    }
+    public void setTaskParameters(TaskDefinitionVariantRecordStruct taskParameters) {
+        set(AttributeName.TaskParameters.name(), taskParameters);
+    }
     
     /*
      * Unique identifier of the main task if this task is part of a complex task sequence. 
