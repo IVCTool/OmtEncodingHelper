@@ -1,5 +1,6 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.interactions;
 
+import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
@@ -21,8 +22,15 @@ public class HLAinteractionRoot extends org.nato.ivct.OmtEncodingHelpers.Core.in
 
     public HLAinteractionRoot() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException, hla.rti1516e.exceptions.NameNotFound, hla.rti1516e.exceptions.FederateNotExecutionMember {
         super();
+        DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
+        {
+            public HLAbyte createElement(int index)
+            {
+                return HLAroot.getEncoderFactory().createHLAbyte();
+            }
+        };        
         addParameter(AttributeName.SendTime.name(), encoderFactory.createHLAinteger32BE());
-        addParameter(AttributeName.UniqueId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray((DataElementFactory<HLAbyte>) encoderFactory, 16));
+        addParameter(AttributeName.UniqueId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(byteFactory, 16));
     }
 
     public void setSendTime (int SendTime) throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
