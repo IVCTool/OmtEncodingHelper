@@ -20,17 +20,20 @@ public class HLAinteractionRoot extends org.nato.ivct.OmtEncodingHelpers.Core.in
         UniqueId
     }
 
-    public HLAinteractionRoot() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException, hla.rti1516e.exceptions.NameNotFound, hla.rti1516e.exceptions.FederateNotExecutionMember {
-        super();
-        DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
+    public DataElementFactory<HLAbyte> getByteFactory () {
+        return new DataElementFactory<HLAbyte>()
         {
             public HLAbyte createElement(int index)
             {
                 return HLAroot.getEncoderFactory().createHLAbyte();
             }
         };        
+    }
+
+    public HLAinteractionRoot() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException, hla.rti1516e.exceptions.NameNotFound, hla.rti1516e.exceptions.FederateNotExecutionMember {
+        super();
         addParameter(AttributeName.SendTime.name(), encoderFactory.createHLAinteger32BE());
-        addParameter(AttributeName.UniqueId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(byteFactory, 16));
+        addParameter(AttributeName.UniqueId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));
     }
 
     public void setSendTime (int SendTime) throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
@@ -41,5 +44,12 @@ public class HLAinteractionRoot extends org.nato.ivct.OmtEncodingHelpers.Core.in
     public int getSendTime () throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
         EpochTimeStruct value = (EpochTimeStruct) getParameter(AttributeName.SendTime.name());
         return value.getValue();
+    }
+
+    public void setUniqueId(UUIDStruct uuid) {
+        setParameter(AttributeName.UniqueId.name(), uuid.toByteArray());
+    }
+    public UUIDStruct getUniqueId() {
+        return (UUIDStruct) getParameter(getHlaClassName(AttributeName.UniqueId.name()));
     }
 }
