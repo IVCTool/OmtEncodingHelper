@@ -50,6 +50,6 @@ public class HLAinteractionRoot extends org.nato.ivct.OmtEncodingHelpers.Core.in
         setParameter(AttributeName.UniqueId.name(), uuid.toByteArray());
     }
     public UUIDStruct getUniqueId() {
-        return (UUIDStruct) getParameter(getHlaClassName(AttributeName.UniqueId.name()));
+        return (UUIDStruct) getParameter(AttributeName.UniqueId.name());
     }
 }
