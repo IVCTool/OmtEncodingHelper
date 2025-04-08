@@ -1,141 +1,35 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import hla.rti1516e.encoding.DataElement;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+
+import hla.rti1516e.RtiFactoryFactory;
+import hla.rti1516e.encoding.DecoderException;
+import hla.rti1516e.encoding.EncoderFactory;
+import hla.rti1516e.encoding.HLAinteger32BE;
+import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
-
-
-
 public class TaskDefinitionVariantRecordStructTest {
-
-    private TaskDefinitionVariantRecordStruct taskDefinitionVariantRecordStruct;
+    private EncoderFactory encoderFactory;
 
     @BeforeEach
-    public void setUp() throws RTIinternalError {
-        taskDefinitionVariantRecordStruct = new TaskDefinitionVariantRecordStruct();
+    public void setup() throws RTIinternalError {
+            encoderFactory = RtiFactoryFactory.getRtiFactory().getEncoderFactory();
     }
 
     @Test
-    public void testConstructor() throws RTIinternalError {
-        assertNotNull(taskDefinitionVariantRecordStruct);
-    }
-
-    @Test
-    public void testAddDetachTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.Detach.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddDirectFireTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.DirectFire.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddIndirectFireTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.IndirectFire.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddFollowEntityTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.FollowEntity.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddMoveInDirectionTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.MoveInDirection.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddMoveIntoFormationTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.MoveIntoFormation.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddMoveToLocationTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.MoveToLocation.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddAttachTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.Attach.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddObserveTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.Observe.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddOperateCheckpointTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.OperateCheckpoint.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddPatrolTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.Patrol.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddChangeAltitudeTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.ChangeAltitude.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddChangeSpeedTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.ChangeSpeed.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddChangeHeadingTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.ChangeHeading.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddOtherActivityTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.OtherActivity.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddOperateObservationPostTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.OperateObservationPost.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddChangeRulesOfEngagementTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.SetRulesOfEngagement.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testAddMagicMoveTask() {
-        DataElement task = taskDefinitionVariantRecordStruct.get(TaskDefinitionVariantRecordStruct.TaskType.MagicMove.name());
-        assertNotNull(task);
-    }
-
-    @Test
-    public void testInvalidTaskType() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            taskDefinitionVariantRecordStruct.get("InvalidTaskType");
-        });
+    public void testDecode() throws RTIinternalError, DecoderException {
+        TaskDefinitionVariantRecordStruct taskDefinitionVariantRecordStruct = new TaskDefinitionVariantRecordStruct();
+        MoveByRouteTaskStruct mbr = new MoveByRouteTaskStruct();
+        taskDefinitionVariantRecordStruct.setVariant(encoderFactory.createHLAinteger32BE(29), mbr);
+        TaskDefinitionVariantRecordStruct taskDefinitionVariantRecordStruct2 = new TaskDefinitionVariantRecordStruct();
+        taskDefinitionVariantRecordStruct2.decode(taskDefinitionVariantRecordStruct.toByteArray());
+        int discriminant = taskDefinitionVariantRecordStruct2.getDiscriminant().getValue();
+        HLAvariantRecord<HLAinteger32BE> variant = taskDefinitionVariantRecordStruct2.getDataElement();
+        assertEquals(discriminant, 29);
+        assertInstanceOf(MoveByRouteTaskStruct.class, variant.getValue());
     }
 }
