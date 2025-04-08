@@ -40,7 +40,7 @@ public class FireTaskProgressStruct extends HLAfixedRecordStruct {
     public FireTaskProgressStruct(HLAfixedRecord rec)  throws RTIinternalError {
         this();
         setElapsedTime((HLAinteger64BE)rec.get(0));
-        setMunitionUsed((HLAinteger16BE)rec.get(0));
+        setMunitionUsed((HLAinteger16BE)rec.get(1));
     }
 
     public HLAinteger64BE getElapsedTime() {
