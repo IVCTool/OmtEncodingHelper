@@ -1,6 +1,11 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAvariantRecordStruct;
+import static org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.EntityControlActionEnum32.*;
 
 import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;
@@ -44,6 +49,9 @@ import hla.rti1516e.exceptions.RTIinternalError;
  */
 public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger32BE> {
 
+    private Set<EntityControlActionEnum32> elapsedTime = new HashSet<>(Arrays.asList(
+        OperateCheckpoint, OtherActivity, FollowEntity, OperateObservationPost));
+
     public TaskProgressVariantRecord() throws RTIinternalError {
         super();
     }
@@ -51,26 +59,43 @@ public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger
     public void decode (byte[] bytes) throws DecoderException {
         HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
         try {
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(EntityControlActionEnum32.DirectFire.getValue()), (new FireTaskProgressStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(EntityControlActionEnum32.IndirectFire.getValue()), (new FireTaskProgressStruct()).getDataElement());
+            HLAfixedRecord ftp = new FireTaskProgressStruct().getDataElement();
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(DirectFire.getValue()), ftp);
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(IndirectFire.getValue()), ftp);
 
+            HLAfixedRecord mtp = new MoveTaskProgressStruct().getDataElement();
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), mtp);
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), mtp);
+
+            HLAfixedRecord etp = new ElapsedTimeProgressStruct().getDataElement();
+            elapsedTime.stream().forEach(i -> decoder.setVariant(encoderFactory.createHLAinteger32BE(i.getValue()), etp));
+            
+            HLAfixedRecord ptp = new PatrolTaskProgressStruct().getDataElement();
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(Patrol.getValue()), ptp);
+            
             decoder.decode(bytes);
  
-            int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
+            HLAinteger32BE hv = (HLAinteger32BE) decoder.getDiscriminant();
             HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
-            setVariant(encoderFactory.createHLAinteger32BE(dv), rec);            
-            switch (dv) {
-                case 32: case 42: case 24: case 25: case 34: 
-                    setElapsedTimeProgress(dv, new ElapsedTimeProgressStruct(rec)); 
+            
+            EntityControlActionEnum32 ev = EntityControlActionEnum32.get(hv.getValue());
+            
+            switch (ev) {
+                case OperateCheckpoint: 
+                case OtherActivity: 
+                case FollowEntity: 
+                case MoveInDirection: 
+                case OperateObservationPost: 
+                    setVariant(hv, new ElapsedTimeProgressStruct(rec)); 
                     break;
-                case 20: case 22: 
-                    setFireTaskProgress(dv, new FireTaskProgressStruct(rec)); 
+                case DirectFire: case IndirectFire: 
+                    setVariant(hv, new FireTaskProgressStruct(rec)); 
                     break;
-                case 28: case 29: 
-                    setMoveTaskProgress(dv, new MoveTaskProgressStruct(rec));
+                case MoveToLocation: case MoveByRoute: 
+                    setVariant(hv, new MoveTaskProgressStruct(rec));
                     break;
-                case 33:
-                    setPatrolTaskProgress(dv, new PatrolTaskProgressStruct(rec));
+                case Patrol:
+                    setVariant(hv, new PatrolTaskProgressStruct(rec));
                 break;
                 default: break;
             }
@@ -79,19 +104,25 @@ public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger
         }
     }
     
-    private void setPatrolTaskProgress(int dv, PatrolTaskProgressStruct patrolTaskProgress) {
-        setVariant(encoderFactory.createHLAinteger32BE(dv), patrolTaskProgress);
+    public void setPatrolTaskProgress(EntityControlActionEnum32 ev, PatrolTaskProgressStruct patrolTaskProgress) {
+        setVariant(encoderFactory.createHLAinteger32BE(Patrol.getValue()), patrolTaskProgress);
     }
 
-    private void setMoveTaskProgress(int dv, MoveTaskProgressStruct moveTaskProgress) {
-        setVariant(encoderFactory.createHLAinteger32BE(dv), moveTaskProgress);
+    public void setMoveTaskProgress(EntityControlActionEnum32 ev, MoveTaskProgressStruct moveTaskProgress) throws RTIinternalError {
+        if (ev == MoveToLocation || ev == MoveByRoute) {
+            setVariant(encoderFactory.createHLAinteger32BE(ev.getValue()), moveTaskProgress);
+        } else throw new RTIinternalError("Wrong match between discriminant and data element.");
     }
 
-    private void setFireTaskProgress(int dv, FireTaskProgressStruct fireTaskProgress) {
-        setVariant(encoderFactory.createHLAinteger32BE(dv), fireTaskProgress);
+    public void setFireTaskProgress(EntityControlActionEnum32 ev, FireTaskProgressStruct fireTaskProgress) throws RTIinternalError {
+        if (ev == DirectFire || ev == IndirectFire) {
+            setVariant(encoderFactory.createHLAinteger32BE(ev.getValue()), fireTaskProgress);
+        } else throw new RTIinternalError("Wrong match between discriminant and data element.");
     }
 
-    private void setElapsedTimeProgress(int dv, ElapsedTimeProgressStruct elapsedTimeProgress) {
-        setVariant(encoderFactory.createHLAinteger32BE(dv), elapsedTimeProgress);
+    public void setElapsedTimeProgress(EntityControlActionEnum32 ev, ElapsedTimeProgressStruct elapsedTimeProgress) throws RTIinternalError {
+        if (elapsedTime.contains(ev)) {
+            setVariant(encoderFactory.createHLAinteger32BE(ev.getValue()), elapsedTimeProgress);
+        } else throw new RTIinternalError("Wrong match between discriminant and data element.");
     }    
 }

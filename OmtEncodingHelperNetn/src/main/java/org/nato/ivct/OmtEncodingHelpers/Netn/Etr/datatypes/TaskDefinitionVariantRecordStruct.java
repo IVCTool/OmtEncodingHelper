@@ -162,4 +162,12 @@ public class TaskDefinitionVariantRecordStruct extends HLAvariantRecordStruct<HL
             throw new DecoderException(e.getMessage());
         }
     }
+
+    public void setMoveToLocation(MoveToLocationTaskStruct moveToLocationTaskStruct) {
+        setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), moveToLocationTaskStruct);
+    } 
+
+    public void setMoveByRoute(MoveByRouteTaskStruct moveByRouteTaskStruct) {
+        setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), moveByRouteTaskStruct);
+    }
 }
