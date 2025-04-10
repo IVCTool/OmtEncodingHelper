@@ -105,14 +105,14 @@ public class HLAfixedRecordStruct implements DataElement {
 
     @Override
     public void encode(ByteWrapper byteWrapper) throws EncoderException {
-        log.trace(this.getClass() + ".encode(ByteWrapper byteWrapper)");        
+        log.trace(this.getClass() + ": encode(ByteWrapper byteWrapper)");        
         getDataElement().encode(byteWrapper);            
     }
 
     @Override
     public int getEncodedLength() {
         int l = getDataElement().getEncodedLength();
-        log.trace(this.getClass() + ".getEncodedLength() " + l);        
+        log.trace(this.getClass() + ": getEncodedLength() " + l);        
         return l;
     }
 
