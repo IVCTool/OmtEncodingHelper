@@ -1,8 +1,61 @@
 plugins {
     id 'OmtHelper.library-conventions'
+    id 'maven-publish'
+    id 'java-library'
+    id 'signing'
 }
 
 dependencies {
 }
 
 group = 'org.nato.ivct.OmtEncodingHelper.Core'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = 'Core.lib'
+            from components.java
+
+            pom {
+                name = "NETN Core Encoding Helper Library"
+                description = "Library to support NETN encoding"
+                url = "https://github.com/IVCTool/OmtEncodingHelper/tree/main/Core.lib"
+                licenses {
+                    license {
+                        name = "The Apache License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "rhzg"
+                        name = "Reinhard Herzog"
+                        email = "reinhard.herzog@iosb.fraunhofer.de"
+                    }
+                }
+                scm {
+                    connection = "scm:git:https://github.com/IVCTool/OmtEncodingHelper/tree/main/Core.lib.git"
+                    developerConnection = "scm:git:https://github.com/IVCTool/OmtEncodingHelper/tree/main/Core.lib-git"
+                    url = "https://github.com/IVCTool/OmtEncodingHelper/tree/main/Core.lib"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+}
+
+signing
+{
+    sign publishing.publications.mavenJava
+}
+
