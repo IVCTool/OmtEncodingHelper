@@ -9,6 +9,8 @@ import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
+import static org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.EntityControlActionEnum32.*;
+
 /**
  * 
         <variantRecordDataTypes>
@@ -143,18 +145,29 @@ public class TaskDefinitionVariantRecordStruct extends HLAvariantRecordStruct<HL
 
     public void decode (byte[] bytes) throws DecoderException {
         HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
-        decoder.decode(bytes);
-        int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
-        HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
-        setVariant(encoderFactory.createHLAinteger32BE(dv), rec);
         try {
-            switch (dv) {
-                case 28: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveToLocationTaskStruct(rec));
-                case 29: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveByRouteTaskStruct(rec));
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), new MoveToLocationTaskStruct().getDataElement());
+            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), new MoveByRouteTaskStruct().getDataElement());
+            
+            decoder.decode(bytes);
+            int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
+            HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
+            EntityControlActionEnum32 ev = EntityControlActionEnum32.get(dv);
+            switch (ev) {
+                case MoveToLocation: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveToLocationTaskStruct(rec));
+                case MoveByRoute: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveByRouteTaskStruct(rec));
                 default: break;
             }
         } catch (RTIinternalError e) {
             throw new DecoderException(e.getMessage());
         }
+    }
+
+    public void setMoveToLocation(MoveToLocationTaskStruct moveToLocationTaskStruct) {
+        setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), moveToLocationTaskStruct);
+    } 
+
+    public void setMoveByRoute(MoveByRouteTaskStruct moveByRouteTaskStruct) {
+        setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), moveByRouteTaskStruct);
     }
 }

@@ -2,9 +2,9 @@ package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.AggregateMissionEnum16;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.CallSignStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
-import org.nato.ivct.OmtEncodingHelpers.RPR.Base.datatypes.CallSignStruct;
 
 import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;

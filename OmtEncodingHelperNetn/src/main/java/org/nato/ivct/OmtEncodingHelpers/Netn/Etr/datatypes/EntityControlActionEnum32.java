@@ -1,5 +1,8 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 
 import hla.rti1516e.encoding.DecoderException;
@@ -134,32 +137,27 @@ public enum EntityControlActionEnum32 {
         return value;
     }
 
+    private static Optional<EntityControlActionEnum32> valueOf(int i) {
+        return Arrays.asList(values()).stream().filter(s -> s.getValue() == i).findAny();
+    }
+
+    public static EntityControlActionEnum32 get(int i) throws DecoderException {
+        Optional<EntityControlActionEnum32> v = valueOf(i);
+        if (v.isPresent()) {
+            return v.get();
+        } else {
+            throw new DecoderException("Invalid enum value ");
+        }
+    }
+
     public static EntityControlActionEnum32 decode(byte[] bytes) throws DecoderException {
         HLAinteger32BE de = HLAroot.getEncoderFactory().createHLAinteger32BE();
         de.decode(bytes);
-        switch (de.getValue()) {
-            case 10: return MagicMove;
-            case 18: return Detach;
-            case 20: return DirectFire;
-            case 22: return IndirectFire;
-            case 24: return FollowEntity;
-            case 25: return MoveInDirection;
-            case 26: return MoveIntoFormation;
-            case 28: return MoveToLocation;
-            case 29: return MoveByRoute;
-            case 30: return Attach;
-            case 31: return Observe;
-            case 32: return OperateCheckpoint;
-            case 33: return Patrol;
-            case 34: return OperateObservationPost;
-            case 35: return ChangeAltitude;
-            case 36: return ChangeSpeed;
-            case 39: return StopAtSideOfRoad;
-            case 40: return ChangeHeading;
-            case 41: return SetRulesOfEngagement;
-            case 42: return OtherActivity;
-
-            default: throw new IllegalArgumentException("Unknown value: " + de.getValue());
+        Optional<EntityControlActionEnum32> v = valueOf(de.getValue());
+        if (v.isPresent()) {
+            return v.get();
+        } else {
+            throw new DecoderException("Invalid enum value ");
         }
     }    
 }

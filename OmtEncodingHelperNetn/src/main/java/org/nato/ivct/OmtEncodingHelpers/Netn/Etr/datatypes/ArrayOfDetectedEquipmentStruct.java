@@ -7,14 +7,14 @@ import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.exceptions.RTIexception;
 import hla.rti1516e.exceptions.RTIinternalError;
 
-public class ArrayOfLocationStruct extends HLAvariableArrayStruct<LocationStruct> {
+public class ArrayOfDetectedEquipmentStruct extends HLAvariableArrayStruct<DetectedEquipmentStruct> {
 
-    static DataElementFactory<LocationStruct> elementFactory = new DataElementFactory<LocationStruct>()
+    static DataElementFactory<DetectedEquipmentStruct> elementFactory = new DataElementFactory<DetectedEquipmentStruct>()
     {
-        public LocationStruct createElement(int index) 
+        public DetectedEquipmentStruct createElement(int index) 
         {
             try {
-                return new LocationStruct();
+                return new DetectedEquipmentStruct();
             } catch (RTIexception e) {
                 e.printStackTrace();
                 return null;
@@ -22,9 +22,9 @@ public class ArrayOfLocationStruct extends HLAvariableArrayStruct<LocationStruct
         }            
     };
 
-    public ArrayOfLocationStruct() throws RTIinternalError {
+    public ArrayOfDetectedEquipmentStruct() throws RTIinternalError {
         super();
-        value = encoderFactory.createHLAvariableArray(elementFactory);        
+        value = encoderFactory.createHLAvariableArray(elementFactory);
     }
 
 }
