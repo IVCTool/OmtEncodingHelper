@@ -27,13 +27,15 @@ public class MoveTaskProgressStruct extends HLAfixedRecordStruct {
 
     public enum AttributeName {
         LastPassedWaypointIndex,
-        NextWaypointIndex
+        NextWaypointIndex,
+        A
     }
 
     public MoveTaskProgressStruct() throws RTIinternalError {
         super();
         add(AttributeName.LastPassedWaypointIndex.name(), encoderFactory.createHLAinteger32BE());
         add(AttributeName.NextWaypointIndex.name(), encoderFactory.createHLAinteger32BE());
+        add(AttributeName.A.name(), encoderFactory.createHLAinteger64BE());
     }
 
     public MoveTaskProgressStruct(HLAfixedRecord rec ) throws RTIinternalError {
