@@ -1,6 +1,7 @@
-package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
+package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.objects;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects.HLAobjectRoot;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.ArrayOfTaskDefinitionsStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.ArrayOfTaskProgressStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Smc.datatypes.EntityControlActionsStruct;
