@@ -16,15 +16,24 @@
 
  package org.nato.ivct.OmtEncodingHelpers.Netn.Smc.datatypes;
 
+import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAvariableArrayStruct;
-
+import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.encoding.HLAinteger32BE;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 
 public class EntityControlActionsStruct extends HLAvariableArrayStruct<HLAinteger32BE> {
- 
+     static DataElementFactory<HLAinteger32BE> int32Factory = new DataElementFactory<HLAinteger32BE>()
+    {
+        public HLAinteger32BE createElement(int index) 
+        {
+            return HLAroot.getEncoderFactory().createHLAinteger32BE();
+        }            
+    };
+
     public EntityControlActionsStruct() throws RTIinternalError {
         super();
+        value = encoderFactory.createHLAvariableArray(int32Factory);
     }
 }
