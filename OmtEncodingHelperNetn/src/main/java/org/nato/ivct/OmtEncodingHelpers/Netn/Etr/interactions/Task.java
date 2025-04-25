@@ -29,10 +29,10 @@ public class Task extends SMC_EntityControl {
         addParameter(AttributeName.TaskId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));
     }
 
-    public void setUniqueId(UUIDStruct uuid) {
+    public void setTaskId(UUIDStruct uuid) {
         setParameter(AttributeName.TaskId.name(), uuid.toByteArray());
     }
-    public UUIDStruct getUniqueId() {
+    public UUIDStruct getTaskId() {
         return (UUIDStruct) getParameter(getHlaClassName(AttributeName.TaskId.name()));
     }    
 }
