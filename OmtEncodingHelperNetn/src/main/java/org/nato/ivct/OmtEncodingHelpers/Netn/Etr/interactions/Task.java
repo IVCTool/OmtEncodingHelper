@@ -2,14 +2,14 @@ package org.nato.ivct.OmtEncodingHelpers.Netn.Etr.interactions;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
-import org.nato.ivct.OmtEncodingHelpers.Netn.Base.interactions.HLAinteractionRoot;
+import org.nato.ivct.OmtEncodingHelpers.Netn.Smc.interactions.SMC_EntityControl;
 
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.NameNotFound;
 import hla.rti1516e.exceptions.NotConnected;
 import hla.rti1516e.exceptions.RTIinternalError;
 
-public class Task extends HLAinteractionRoot {
+public class Task extends SMC_EntityControl {
 
     enum AttributeName {
         Activity,
