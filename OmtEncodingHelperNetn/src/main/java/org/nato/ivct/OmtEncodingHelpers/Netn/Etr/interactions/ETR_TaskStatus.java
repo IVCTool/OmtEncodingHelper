@@ -46,10 +46,10 @@ public class ETR_TaskStatus  extends HLAinteractionRoot {
         addParameter(AttributeName.TaskStatus.name(), encoderFactory.createHLAinteger32BE());
     }
 
-    public void setUniqueId(UUIDStruct uuid) {
+    public void setTask(UUIDStruct uuid) {
         setParameter(AttributeName.Task.name(), uuid.toByteArray());
     }
-    public UUIDStruct getUniqueId() {
+    public UUIDStruct getTask() {
         return (UUIDStruct) getParameter(AttributeName.Task.name());
     }
 
