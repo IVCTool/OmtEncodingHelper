@@ -22,14 +22,11 @@ public class SMC_EntityControl extends HLAinteractionRoot {
         addParameter(AttributeName.Entity.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));        
     }
 
-    public void setSendTime (int Entity) throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
-        EpochTimeStruct value = (EpochTimeStruct) getParameter(AttributeName.Entity.name());
-        value.setValue(Entity);
-        setParameter(AttributeName.Entity.name(), value.toByteArray());
+    public void setEntity (UUIDStruct EntityId) throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        setParameter(AttributeName.Entity.name(), EntityId.toByteArray());
     }
-    public int getSendTime () throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
-        EpochTimeStruct value = (EpochTimeStruct) getParameter(AttributeName.Entity.name());
-        return value.getValue();
+    public UUIDStruct getEntity () throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        return (UUIDStruct) getParameter(getHlaClassName(AttributeName.Entity.name()));
     }
 
 }
