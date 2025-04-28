@@ -26,7 +26,7 @@ public class Task extends SMC_EntityControl {
     public Task() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError,
             OmtEncodingHelperException, NameNotFound, FederateNotExecutionMember {
         super();
-        addParameter(AttributeName.TaskId.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));
+        addParameter(AttributeName.TaskId.name(), new UUIDStruct());
     }
 
     public void setTaskId(UUIDStruct uuid) {

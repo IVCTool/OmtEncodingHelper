@@ -42,7 +42,7 @@ public class ETR_TaskStatus  extends HLAinteractionRoot {
     public ETR_TaskStatus() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError,
             OmtEncodingHelperException, NameNotFound, FederateNotExecutionMember {
         super();
-        addParameter(AttributeName.Task.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));
+        addParameter(AttributeName.Task.name(), new UUIDStruct());
         addParameter(AttributeName.TaskStatus.name(), encoderFactory.createHLAinteger32BE());
     }
 

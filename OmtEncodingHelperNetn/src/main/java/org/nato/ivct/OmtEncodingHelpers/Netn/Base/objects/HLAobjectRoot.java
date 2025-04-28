@@ -14,7 +14,6 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.objects;
 
-import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 
@@ -63,14 +62,6 @@ public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects
         // initialize the attributes and ignore the return values
         getCreateTime();
         getUniqueId();
-        // initialize the byte factory
-        byteFactory = new DataElementFactory<HLAbyte>()
-        {
-            public HLAbyte createElement(int index)
-            {
-                return HLAroot.getEncoderFactory().createHLAbyte();
-            }            
-        };
     }
 
     /* publish and subscribe helper methods */

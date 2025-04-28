@@ -19,7 +19,7 @@ public class SMC_EntityControl extends HLAinteractionRoot {
     public SMC_EntityControl() throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError,
             OmtEncodingHelperException, NameNotFound, FederateNotExecutionMember {
         super();
-        addParameter(AttributeName.Entity.name(), (UUIDStruct) encoderFactory.createHLAfixedArray(getByteFactory(), 16));        
+        addParameter(AttributeName.Entity.name(), new UUIDStruct());        
     }
 
     public void setEntity (UUIDStruct EntityId) throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError {
