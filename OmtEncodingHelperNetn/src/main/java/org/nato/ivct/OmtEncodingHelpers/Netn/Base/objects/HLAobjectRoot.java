@@ -38,7 +38,7 @@ import hla.rti1516e.exceptions.RTIinternalError;
  *   is generated or pre-defined.
  * 
  */
-public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.Core.objects.HLAobjectRoot {
+public class HLAobjectRoot extends org.nato.ivct.OmtEncodingHelpers.RPR.Base.objects.BaseEntity {
 
     public enum AttributeName {
         CreateTime,
