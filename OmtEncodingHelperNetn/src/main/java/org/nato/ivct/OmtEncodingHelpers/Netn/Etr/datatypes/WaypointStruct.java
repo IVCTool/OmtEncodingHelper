@@ -48,17 +48,17 @@ public class WaypointStruct extends HLAfixedRecordStruct {
         set(AttributeName.Location.name(), loaction);
     }
 
-    public HLAfloat32BE getSpeed() {
-        return (HLAfloat32BE)get(AttributeName.Speed.name());
+    public float getSpeed() {
+        return ((HLAfloat32BE)get(AttributeName.Speed.name())).getValue();
     }
-    public void setSpeed(HLAfloat32BE speed) {
-        set(AttributeName.Speed.name(), speed);
+    public void setSpeed(float speed) {
+        ((HLAfloat32BE)get(AttributeName.Speed.name())).setValue(speed);;
     }
 
-    public HLAfloat32BE getSegmentMaxWidth() {
-        return (HLAfloat32BE)get(AttributeName.SegmentMaxWidth.name());
+    public float getSegmentMaxWidth() {
+        return ((HLAfloat32BE)get(AttributeName.SegmentMaxWidth.name())).getValue();
     }
-    public void setSegmentMaxWidth(HLAfloat32BE segmentMaxWidth) {
-        set(AttributeName.SegmentMaxWidth.name(), segmentMaxWidth);
+    public void setSegmentMaxWidth(float segmentMaxWidth) {
+        ((HLAfloat32BE)get(AttributeName.SegmentMaxWidth.name())).setValue(segmentMaxWidth);;
     }
 }
