@@ -8,7 +8,7 @@ plugins {
 // Java Version Compatibility
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
@@ -35,7 +35,7 @@ dependencies {
 	implementation files("$System.env.LRC_CLASSPATH")
 
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.12.0-M1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.12.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'}
 
 test {
