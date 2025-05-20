@@ -1,5 +1,6 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes;
 
+import java.nio.charset.Charset;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -40,7 +41,8 @@ public class UUIDStructTest extends HLAobjectRootBaseTests {
 
             hlaobjectRoot.setCreateTime(42);
             UUIDStruct id = hlaobjectRoot.getUniqueId();
-            id.decode("0123456789012345".getBytes());
+            // sammple UUID 10 39 00 74 76 F2 45 33 80 B3 C5 AE 2F C1 13 73  
+            id.decode("1039007476F2453380B3C5AE2FC11373".getBytes(Charset.forName("UTF-16BE")));
             hlaobjectRoot.setUniqueId(id);
 
             hlaobjectRoot.register();
@@ -52,8 +54,23 @@ public class UUIDStructTest extends HLAobjectRootBaseTests {
         }
     }
 
+
     @Test
-    void testEncode() {
+    void testUUIDEncode() {
+        try {
+            UUIDStruct id1 = hlaobjectRoot.getUniqueId();
+            id1.decode("0123456789012345".getBytes());
+            UUIDStruct id2 = new UUIDStruct();
+            id2.decode(id1.toByteArray());
+            assertEquals(id1.toString(), id2.toString());
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    void testEncodeUuidAttributeEncode() {
         try {
             hlaobjectRoot.setCreateTime(42);
             UUIDStruct id = hlaobjectRoot.getUniqueId();
