@@ -1,7 +1,6 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Smc.interactions;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
-import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.interactions.HLAinteractionRoot;
 
