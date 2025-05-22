@@ -1,6 +1,8 @@
 package org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes;
 
 import java.nio.charset.Charset;
+import java.util.HexFormat;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -59,9 +61,13 @@ public class UUIDStructTest extends HLAobjectRootBaseTests {
     void testUUIDEncode() {
         try {
             UUIDStruct id1 = hlaobjectRoot.getUniqueId();
-            id1.decode("0123456789012345".getBytes());
+            id1.decode("0123456789012345".getBytes(Charset.forName("UTF-16")));
+ 
+            String str = "1039007476F2453380B3C5AE2FC11373";
+            byte [] bytes = HexFormat.of().parseHex(str);
+ 
             UUIDStruct id2 = new UUIDStruct();
-            id2.decode(id1.toByteArray());
+            id2.decode(bytes);
             assertEquals(id1.toString(), id2.toString());
         } catch (Exception e) {
             fail(e.getMessage());
