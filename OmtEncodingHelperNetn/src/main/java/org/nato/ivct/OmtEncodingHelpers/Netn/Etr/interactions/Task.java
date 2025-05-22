@@ -27,6 +27,7 @@ public class Task extends SMC_EntityControl {
             OmtEncodingHelperException, NameNotFound, FederateNotExecutionMember {
         super();
         addParameter(AttributeName.TaskId.name(), new UUIDStruct());
+        addParameter(AttributeName.Tasker.name(), new UUIDStruct());
     }
 
     public void setTaskId(UUIDStruct uuid) {
@@ -34,5 +35,12 @@ public class Task extends SMC_EntityControl {
     }
     public UUIDStruct getTaskId() {
         return (UUIDStruct) getParameter(getHlaClassName(AttributeName.TaskId.name()));
+    }    
+
+    public void setTasker(UUIDStruct uuid) {
+        setParameter(AttributeName.Tasker.name(), uuid.toByteArray());
+    }
+    public UUIDStruct getTasker() {
+        return (UUIDStruct) getParameter(getHlaClassName(AttributeName.Tasker.name()));
     }    
 }
