@@ -57,6 +57,19 @@ public class UUIDStruct implements HLAfixedArray<HLAbyte> {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        UUIDStruct other = (UUIDStruct) obj;
+        return value.toString().equals(other.value.toString());        
+    }
+
+
+    @Override
     public int getOctetBoundary() {
         return value.getOctetBoundary();
     }
