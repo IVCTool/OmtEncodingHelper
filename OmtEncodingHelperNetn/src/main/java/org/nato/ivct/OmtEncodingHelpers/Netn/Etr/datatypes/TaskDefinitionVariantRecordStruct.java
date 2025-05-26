@@ -141,14 +141,13 @@ public class TaskDefinitionVariantRecordStruct extends HLAvariantRecordStruct<HL
 
     public TaskDefinitionVariantRecordStruct () throws RTIinternalError {
         super();
+        decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), new MoveToLocationTaskStruct().getDataElement());
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), new MoveByRouteTaskStruct().getDataElement());        
     }
 
     public void decode (byte[] bytes) throws DecoderException {
-        HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
         try {
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), new MoveToLocationTaskStruct().getDataElement());
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), new MoveByRouteTaskStruct().getDataElement());
-            
             decoder.decode(bytes);
             int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
             HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();

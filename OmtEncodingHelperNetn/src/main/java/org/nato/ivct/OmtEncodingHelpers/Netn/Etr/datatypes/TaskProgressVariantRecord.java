@@ -7,11 +7,9 @@ import java.util.Set;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAvariantRecordStruct;
 import static org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.EntityControlActionEnum32.*;
 
-import hla.rti1516e.encoding.DataElement;
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.HLAfixedRecord;
 import hla.rti1516e.encoding.HLAinteger32BE;
-import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 /*
@@ -54,25 +52,25 @@ public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger
 
     public TaskProgressVariantRecord() throws RTIinternalError {
         super();
+        decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
+        
+        HLAfixedRecord ftp = new FireTaskProgressStruct().getDataElement();
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(DirectFire.getValue()), ftp);
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(IndirectFire.getValue()), ftp);
+
+        HLAfixedRecord mtp = new MoveTaskProgressStruct().getDataElement();
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), mtp);
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), mtp);
+
+        HLAfixedRecord etp = new ElapsedTimeProgressStruct().getDataElement();
+        elapsedTime.stream().forEach(i -> decoder.setVariant(encoderFactory.createHLAinteger32BE(i.getValue()), etp));
+        
+        HLAfixedRecord ptp = new PatrolTaskProgressStruct().getDataElement();
+        decoder.setVariant(encoderFactory.createHLAinteger32BE(Patrol.getValue()), ptp);        
     }
 
     public void decode (byte[] bytes) throws DecoderException {
-        HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
         try {
-            HLAfixedRecord ftp = new FireTaskProgressStruct().getDataElement();
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(DirectFire.getValue()), ftp);
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(IndirectFire.getValue()), ftp);
-
-            HLAfixedRecord mtp = new MoveTaskProgressStruct().getDataElement();
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), mtp);
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), mtp);
-
-            HLAfixedRecord etp = new ElapsedTimeProgressStruct().getDataElement();
-            elapsedTime.stream().forEach(i -> decoder.setVariant(encoderFactory.createHLAinteger32BE(i.getValue()), etp));
-            
-            HLAfixedRecord ptp = new PatrolTaskProgressStruct().getDataElement();
-            decoder.setVariant(encoderFactory.createHLAinteger32BE(Patrol.getValue()), ptp);
-            
             decoder.decode(bytes);
  
             HLAinteger32BE hv = (HLAinteger32BE) decoder.getDiscriminant();

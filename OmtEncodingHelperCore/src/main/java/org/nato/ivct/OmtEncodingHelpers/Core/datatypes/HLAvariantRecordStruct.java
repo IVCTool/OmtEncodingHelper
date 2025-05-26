@@ -32,7 +32,7 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
     protected T discriminant = null;
     protected DataElement dataElement = null;
     protected EncoderFactory encoderFactory;
-
+    protected HLAvariantRecord<T> decoder;
 
     public HLAvariantRecordStruct() throws RTIinternalError {
         encoderFactory = RtiFactoryFactory.getRtiFactory().getEncoderFactory();
@@ -48,6 +48,7 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
         }
         this.discriminant = aDiscriminant;
         this.dataElement = aDataElement;
+        decoder.setDiscriminant(aDiscriminant);
     }
 
     public T getDiscriminant() {
@@ -55,11 +56,10 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
     }
 
     public HLAvariantRecord<T> getDataElement() {
-        HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
-        value.setVariant(discriminant, dataElement);
-        return value;
+        // HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
+        decoder.setVariant(discriminant, dataElement);
+        return decoder;
     }
-
 
     /**
      * Inherited methods from DataElement
@@ -67,7 +67,9 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
 
     @Override
     public int getOctetBoundary() {
-        return getDataElement().getOctetBoundary();
+        int ret = getDataElement().getOctetBoundary();
+        log.trace("Octet Boundary: " + ret);
+        return ret;
     }
 
     @Override
@@ -84,25 +86,26 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
 
     @Override
     public byte[] toByteArray() throws EncoderException {
-        HLAvariantRecord<T> value;
-        value = encoderFactory.createHLAvariantRecord(discriminant);
-        value.setVariant(discriminant, dataElement);
-        return value.toByteArray();
+        // HLAvariantRecord<T> value;
+        // value = encoderFactory.createHLAvariantRecord(discriminant);
+        decoder.setVariant(discriminant, dataElement);
+        return decoder.toByteArray();
     }
 
     @Override
     public void decode(ByteWrapper byteWrapper) throws DecoderException {
         log.warn("decode(ByteWrapper byteWrapper) not tested");       
-        HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
-        value.decode(byteWrapper);
-        setVariant(value.getDiscriminant(), value.getValue());
+        // HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
+        decoder.decode(byteWrapper);
+        setVariant(decoder.getDiscriminant(), decoder.getValue());
     }
 
     @Override
     public void decode(byte[] bytes) throws DecoderException {
         log.warn("decode(byte[] bytes) not tested");
-        HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
-        setVariant(value.getDiscriminant(), value.getValue());
+        // HLAvariantRecord<T> value = encoderFactory.createHLAvariantRecord(discriminant);
+        decoder.decode(new ByteWrapper(bytes));
+        setVariant(decoder.getDiscriminant(), decoder.getValue());
     }
 
 }
