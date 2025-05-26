@@ -54,6 +54,7 @@ public class MoveToLocationTaskStruct extends HLAfixedRecordStruct {
     }
 
     public MoveToLocationTaskStruct(HLAfixedRecord rec) throws RTIinternalError {
+        this();
         setLocation((LocationStruct)rec.get(0));
         setPath((ArrayOfLocationStruct)rec.get(1));
         set(AttributeName.MoveType.name(), rec.get(2));

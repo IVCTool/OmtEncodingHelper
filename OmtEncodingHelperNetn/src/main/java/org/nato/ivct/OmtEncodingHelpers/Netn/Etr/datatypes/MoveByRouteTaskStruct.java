@@ -39,6 +39,7 @@ public class MoveByRouteTaskStruct extends HLAfixedRecordStruct {
     }
 
     public MoveByRouteTaskStruct(HLAfixedRecord rec) throws RTIinternalError {
+        this();
         setArrayOfWaypointsStruct((ArrayOfWaypointsStruct)(rec.get(0)));
         set(AttributeName.MoveType.name(), rec.get(1));
     }
