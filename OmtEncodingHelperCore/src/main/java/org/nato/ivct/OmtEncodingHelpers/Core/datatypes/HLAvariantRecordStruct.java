@@ -80,8 +80,9 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
 
     @Override
     public int getEncodedLength() {
-        log.warn("decode(byte[] bytes) not tested");        
-        return getDataElement().getEncodedLength();
+        int ret = getDataElement().getEncodedLength();
+        log.trace(this.getClass() + ":getEncodedLength() " + ret);        
+        return ret;
     }
 
     @Override
