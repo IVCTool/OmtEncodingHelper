@@ -51,22 +51,22 @@ public class SpatialVariantStruct extends HLAvariantRecordStruct<HLAoctet> {
 
     public SpatialVariantStruct () throws RTIinternalError {
         super();
+        decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAoctet());
+
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialStatic.getValue()), (new SpatialStaticStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFPW.getValue()), (new SpatialFPStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRPW.getValue()), (new SpatialRPStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRVW.getValue()), (new SpatialRVStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFVW.getValue()), (new SpatialFVStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFPB.getValue()), (new SpatialFPStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRPB.getValue()), (new SpatialRPStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRVB.getValue()), (new SpatialRVStruct()).getDataElement());
+        decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFVB.getValue()), (new SpatialFVStruct()).getDataElement());
+
     }
 
     public void decode (byte[] bytes) throws DecoderException {
-        HLAvariantRecord<DataElement> decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAoctet());
-
         try {
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialStatic.getValue()), (new SpatialStaticStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFPW.getValue()), (new SpatialFPStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRPW.getValue()), (new SpatialRPStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRVW.getValue()), (new SpatialRVStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFVW.getValue()), (new SpatialFVStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFPB.getValue()), (new SpatialFPStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRPB.getValue()), (new SpatialRPStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialRVB.getValue()), (new SpatialRVStruct()).getDataElement());
-            decoder.setVariant(encoderFactory.createHLAoctet((byte) AttributeName.SpatialFVB.getValue()), (new SpatialFVStruct()).getDataElement());
-
             decoder.decode(bytes);
             switch (((HLAoctet) decoder.getDiscriminant()).getValue()) {
                 
