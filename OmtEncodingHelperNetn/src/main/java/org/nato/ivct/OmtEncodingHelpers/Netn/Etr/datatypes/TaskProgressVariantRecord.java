@@ -48,7 +48,7 @@ import hla.rti1516e.exceptions.RTIinternalError;
 public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger32BE> {
 
     private Set<EntityControlActionEnum32> elapsedTime = new HashSet<>(Arrays.asList(
-        OperateCheckpoint, OtherActivity, FollowEntity, OperateObservationPost));
+        OperateCheckpoint, OtherActivity, FollowEntity, MoveInDirection, OperateObservationPost));
 
     public TaskProgressVariantRecord() throws RTIinternalError {
         super();
