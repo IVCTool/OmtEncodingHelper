@@ -4,6 +4,7 @@ import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAfixedRecordStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.EpochTimeStruct;
 import org.nato.ivct.OmtEncodingHelpers.Netn.Base.datatypes.UUIDStruct;
 
+import hla.rti1516e.encoding.HLAfixedRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 /*
@@ -56,6 +57,15 @@ public class TaskProgress extends HLAfixedRecordStruct {
         add(AttributeName.ExecutingFederateId.name(), new UUIDStruct());
         add(AttributeName.ETC.name(), new EpochTimeStruct());
         add(AttributeName.ProgressData.name(), new TaskProgressVariantRecord());
+    }
+
+    public TaskProgress(HLAfixedRecord rec) throws RTIinternalError {
+        this();
+        setTaskId((UUIDStruct)rec.get(0));
+        setLastUpdated((EpochTimeStruct)rec.get(1));
+        setExecutingFederateIdId((UUIDStruct)rec.get(2));
+        setETC((EpochTimeStruct)rec.get(3));
+        setPrgressData((TaskProgressVariantRecord)rec.get(4));
     }
 
     public UUIDStruct getXTaskId() {
