@@ -141,16 +141,16 @@ public class TaskDefinitionVariantRecordStruct extends HLAvariantRecordStruct<HL
 
     public TaskDefinitionVariantRecordStruct () throws RTIinternalError {
         super();
-        decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), new MoveToLocationTaskStruct().getDataElement());
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), new MoveByRouteTaskStruct().getDataElement());        
+        setDecoder(encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE()));
+        setDecoder(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), new MoveToLocationTaskStruct().getDataElement());
+        setDecoder(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), new MoveByRouteTaskStruct().getDataElement());        
     }
 
     public void decode (byte[] bytes) throws DecoderException {
         try {
-            decoder.decode(bytes);
-            int dv = ((HLAinteger32BE) decoder.getDiscriminant()).getValue();
-            HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
+            super.decode(bytes);
+            int dv = ((HLAinteger32BE) getDiscriminant()).getValue();
+            HLAfixedRecord rec = (HLAfixedRecord) getDecoderValue();
             EntityControlActionEnum32 ev = EntityControlActionEnum32.get(dv);
             switch (ev) {
                 case MoveToLocation: setVariant(encoderFactory.createHLAinteger32BE(dv), new MoveToLocationTaskStruct(rec));

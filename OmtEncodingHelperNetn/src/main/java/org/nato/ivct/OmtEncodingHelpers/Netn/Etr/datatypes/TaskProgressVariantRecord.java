@@ -7,6 +7,7 @@ import java.util.Set;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAvariantRecordStruct;
 import static org.nato.ivct.OmtEncodingHelpers.Netn.Etr.datatypes.EntityControlActionEnum32.*;
 
+import hla.rti1516e.encoding.ByteWrapper;
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.HLAfixedRecord;
 import hla.rti1516e.encoding.HLAinteger32BE;
@@ -52,29 +53,30 @@ public class TaskProgressVariantRecord extends HLAvariantRecordStruct<HLAinteger
 
     public TaskProgressVariantRecord() throws RTIinternalError {
         super();
-        decoder = encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE());
-        
+        setDecoder(encoderFactory.createHLAvariantRecord(encoderFactory.createHLAinteger32BE()));
+
         HLAfixedRecord ftp = new FireTaskProgressStruct().getDataElement();
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(DirectFire.getValue()), ftp);
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(IndirectFire.getValue()), ftp);
+        setDecoder(encoderFactory.createHLAinteger32BE(DirectFire.getValue()), ftp);
+        setDecoder(encoderFactory.createHLAinteger32BE(IndirectFire.getValue()), ftp);
 
         HLAfixedRecord mtp = new MoveTaskProgressStruct().getDataElement();
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), mtp);
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), mtp);
+        setDecoder(encoderFactory.createHLAinteger32BE(MoveToLocation.getValue()), mtp);
+        setDecoder(encoderFactory.createHLAinteger32BE(MoveByRoute.getValue()), mtp);
 
         HLAfixedRecord etp = new ElapsedTimeProgressStruct().getDataElement();
-        elapsedTime.stream().forEach(i -> decoder.setVariant(encoderFactory.createHLAinteger32BE(i.getValue()), etp));
+        elapsedTime.stream().forEach(i -> setDecoder(encoderFactory.createHLAinteger32BE(i.getValue()), etp));
         
         HLAfixedRecord ptp = new PatrolTaskProgressStruct().getDataElement();
-        decoder.setVariant(encoderFactory.createHLAinteger32BE(Patrol.getValue()), ptp);        
+        setDecoder(encoderFactory.createHLAinteger32BE(Patrol.getValue()), ptp);       
     }
 
-    public void decode (byte[] bytes) throws DecoderException {
+    @Override
+    public void decode (ByteWrapper bw) throws DecoderException {
         try {
-            decoder.decode(bytes);
+            super.decode(bw);
  
-            HLAinteger32BE hv = (HLAinteger32BE) decoder.getDiscriminant();
-            HLAfixedRecord rec = (HLAfixedRecord) decoder.getValue();
+            HLAinteger32BE hv = (HLAinteger32BE) getDiscriminant();
+            HLAfixedRecord rec = (HLAfixedRecord) getDecoderValue();
             
             EntityControlActionEnum32 ev = EntityControlActionEnum32.get(hv.getValue());
             

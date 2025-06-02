@@ -127,6 +127,6 @@ public class HLAfixedRecordStruct implements DataElement {
     public void decode(byte[] bytes) throws DecoderException {
         log.trace("decode(byte[] bytes)");    
         valueMap = getDataElement();
-        valueMap.decode(bytes);    
+        valueMap.decode(new ByteWrapper(bytes));    
     }
 }
