@@ -19,8 +19,7 @@ public class TaskDefinitionVariantRecordStructTest {
         TaskDefinitionVariantRecordStruct taskDefinitionVariantRecordStruct2 = new TaskDefinitionVariantRecordStruct();
         taskDefinitionVariantRecordStruct2.decode(taskDefinitionVariantRecordStruct.toByteArray());
         int discriminant = taskDefinitionVariantRecordStruct2.getDiscriminant().getValue();
-        HLAvariantRecord<HLAinteger32BE> variant = taskDefinitionVariantRecordStruct2.getDataElement();
         assertEquals(discriminant, 29);
-        assertInstanceOf(MoveByRouteTaskStruct.class, variant.getValue());
+        assertInstanceOf(MoveByRouteTaskStruct.class, taskDefinitionVariantRecordStruct2.getValue());
     }
 }

@@ -74,7 +74,11 @@ public class HLAvariantRecordStruct<T extends DataElement> implements DataElemen
 
     public HLAvariantRecord<T> getDataElement() {
         if (discriminant != null) {
-            decoder.setVariant(discriminant, dataElement);
+            DataElement de = dataElement;
+            if (dataElement instanceof HLAfixedRecordStruct) {
+                de = ((HLAfixedRecordStruct)dataElement).getDataElement();
+            }
+            decoder.setVariant(discriminant, de);
             decoder.setDiscriminant(discriminant);
         }
         return decoder;
