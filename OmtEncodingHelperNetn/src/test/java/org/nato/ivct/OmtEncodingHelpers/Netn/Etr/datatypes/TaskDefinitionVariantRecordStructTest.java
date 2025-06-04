@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import hla.rti1516e.encoding.DecoderException;
-import hla.rti1516e.encoding.HLAinteger32BE;
-import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 public class TaskDefinitionVariantRecordStructTest {

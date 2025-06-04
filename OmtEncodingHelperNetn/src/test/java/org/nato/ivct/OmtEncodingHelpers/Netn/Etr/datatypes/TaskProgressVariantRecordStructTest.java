@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 import hla.rti1516e.RtiFactoryFactory;
 import hla.rti1516e.encoding.DecoderException;
 import hla.rti1516e.encoding.EncoderFactory;
+import hla.rti1516e.encoding.HLAfixedRecord;
 import hla.rti1516e.encoding.HLAinteger32BE;
-import hla.rti1516e.encoding.HLAvariantRecord;
 import hla.rti1516e.exceptions.RTIinternalError;
 
 public class TaskProgressVariantRecordStructTest {
@@ -40,5 +40,8 @@ public class TaskProgressVariantRecordStructTest {
         discriminant = tpvr.getDiscriminant().getValue();
         assertEquals(discriminant, EntityControlActionEnum32.MoveByRoute.getValue());
         assertInstanceOf(MoveTaskProgressStruct.class, tpvr.getValue());
+        HLAfixedRecord hfr = (HLAfixedRecord)tpvr.getDecoderValue();
+        assertEquals(hfr.get(0), wp1);
+        assertEquals(hfr.get(1), wp2);
     }    
 }
