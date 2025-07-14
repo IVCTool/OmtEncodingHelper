@@ -17,6 +17,7 @@ public class BaseEntity extends HLAobjectRoot {
 
     public enum AttributeName {
         SupportedActions,
+        PlannedTasks,
         CurrentTasks,
         TaskProgress
     }
@@ -24,6 +25,7 @@ public class BaseEntity extends HLAobjectRoot {
     public BaseEntity() throws OmtEncodingHelperException, NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
         super();
         getSupportedActions();
+        getPlannedTasks();
         getCurrentTasks();
         getTaskProgress();
     }
@@ -47,6 +49,18 @@ public class BaseEntity extends HLAobjectRoot {
     }
     public void subscribeTaskProgress() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
         addSubAttribute(AttributeName.TaskProgress.name());
+    }
+
+    public ArrayOfTaskDefinitionsStruct getPlannedTasks() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        ArrayOfTaskDefinitionsStruct holder = (ArrayOfTaskDefinitionsStruct)getAttribute(AttributeName.PlannedTasks.name());
+        if (holder == null) {
+            holder = new ArrayOfTaskDefinitionsStruct();
+            setAttributeValue(AttributeName.PlannedTasks.name(), holder);
+        }
+        return holder;
+    }
+    public void setPlannedTasks(ArrayOfTaskDefinitionsStruct arrayOfTaskDefinitions) throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
+        setAttributeValue(AttributeName.PlannedTasks.name(), arrayOfTaskDefinitions);
     }
 
     public ArrayOfTaskDefinitionsStruct getCurrentTasks() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError, EncoderException {
