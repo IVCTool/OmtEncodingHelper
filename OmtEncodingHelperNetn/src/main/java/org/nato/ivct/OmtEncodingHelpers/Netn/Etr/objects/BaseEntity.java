@@ -37,6 +37,13 @@ public class BaseEntity extends HLAobjectRoot {
         addSubAttribute(AttributeName.SupportedActions.name());
     }
 
+    public void publishPlannedTasks() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addPubAttribute(AttributeName.PlannedTasks.name());
+    }
+    public void subscribePlannedTasks() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
+        addSubAttribute(AttributeName.PlannedTasks.name());
+    }
+        
     public void publishCurrentTasks() throws NameNotFound, InvalidObjectClassHandle, FederateNotExecutionMember, NotConnected, RTIinternalError {
         addPubAttribute(AttributeName.CurrentTasks.name());
     }
