@@ -16,12 +16,13 @@ package org.nato.ivct.OmtEncodingHelpers.Core.interactions;
 
 import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
-
+import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAhandle;
+import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAhandleList;
+import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAmaxUpdateRateName;
+import hla.rti1516.jlc.HLAinteger32BE;
+import hla.rti1516_202X.encoding.HLAboolean;
 import hla.rti1516e.InteractionClassHandle;
 import hla.rti1516e.RtiFactoryFactory;
-import hla.rti1516e.encoding.HLAbyte;
-import hla.rti1516e.encoding.HLAoctetPairBE;
-import hla.rti1516e.encoding.DataElementFactory;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.NameNotFound;
 import hla.rti1516e.exceptions.NotConnected;
@@ -50,25 +51,12 @@ public class HLAreportObjectClassSubscription extends HLAreport {
     public HLAreportObjectClassSubscription()
             throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException {
         super();
-        DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
-        {
-            public HLAbyte createElement(int index)
-            {
-                return HLAroot.getEncoderFactory().createHLAbyte();
-            }
-        };
-        DataElementFactory<HLAoctetPairBE> octedFactory = new DataElementFactory<HLAoctetPairBE>()
-        {
-            public HLAoctetPairBE createElement(int index)
-            {
-                return HLAroot.getEncoderFactory().createHLAoctetPairBE();
-            }
-        };
+
         addParameter(Attributes.HLAnumberOfClasses.name(), RtiFactoryFactory.getRtiFactory().getEncoderFactory().createHLAinteger32BE());
-        addParameter(Attributes.HLAobjectClass.name(), HLAroot.getEncoderFactory().createHLAvariableArray(byteFactory));
+        addParameter(Attributes.HLAobjectClass.name(), new HLAhandle());
         addParameter(Attributes.HLAactive.name(), HLAroot.getEncoderFactory().createHLAboolean());
-        addParameter(Attributes.HLAmaxUpdateRate.name(), HLAroot.getEncoderFactory().createHLAvariableArray(octedFactory));
-        addParameter(Attributes.HLAattributeList.name(), HLAroot.getEncoderFactory().createHLAvariableArray(octedFactory));
+        addParameter(Attributes.HLAmaxUpdateRate.name(), new HLAmaxUpdateRateName());
+        addParameter(Attributes.HLAattributeList.name(), new HLAhandleList());
     }
     
     public static HLAreportObjectClassSubscription discover (InteractionClassHandle theInteractionClassHandle) {
@@ -83,5 +71,26 @@ public class HLAreportObjectClassSubscription extends HLAreport {
         }
         return candidate;
     }
+
+    public int getHLAnumberOfClasses() {
+        HLAinteger32BE v = (HLAinteger32BE)getParameter(Attributes.HLAnumberOfClasses.name());
+        return v.getValue();
+    }
     
+    public HLAhandle getHLAObjectClass() {
+        return (HLAhandle)getParameter(Attributes.HLAobjectClass.name());
+    }
+
+    public boolean getHLAactive() {
+        HLAboolean v = (HLAboolean)getParameter(Attributes.HLAactive.name());
+        return v.getValue();
+    }
+
+    public HLAhandleList getHlAattributeList() {
+        return (HLAhandleList)getParameter(Attributes.HLAattributeList.name());
+    }
+
+    public HLAmaxUpdateRateName getHLAmaxUpdateRate() {
+        return (HLAmaxUpdateRateName)getParameter(Attributes.HLAmaxUpdateRate.name());
+    }
 }

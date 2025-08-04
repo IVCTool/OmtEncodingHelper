@@ -14,12 +14,10 @@ limitations under the License. */
 
 package org.nato.ivct.OmtEncodingHelpers.Core.interactions;
 
-import org.nato.ivct.OmtEncodingHelpers.Core.HLAroot;
 import org.nato.ivct.OmtEncodingHelpers.Core.OmtEncodingHelperException;
+import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAinteractionSubList;
 
 import hla.rti1516e.InteractionClassHandle;
-import hla.rti1516e.encoding.DataElementFactory;
-import hla.rti1516e.encoding.HLAbyte;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
 import hla.rti1516e.exceptions.NameNotFound;
 import hla.rti1516e.exceptions.NotConnected;
@@ -41,14 +39,7 @@ public class HLAreportInteractionSubscription extends HLAreport {
     public HLAreportInteractionSubscription()
             throws NameNotFound, FederateNotExecutionMember, NotConnected, RTIinternalError, OmtEncodingHelperException {
         super();
-        DataElementFactory<HLAbyte> byteFactory = new DataElementFactory<HLAbyte>()
-        {
-            public HLAbyte createElement(int index)
-            {
-                return HLAroot.getEncoderFactory().createHLAbyte();
-            }
-        };
-        addParameter(Attributes.HLAinteractionClassList.name(), HLAroot.getEncoderFactory().createHLAvariableArray(byteFactory));
+        addParameter(Attributes.HLAinteractionClassList.name(), new HLAinteractionSubList());
     }
 
     public static HLAreportInteractionSubscription discover (InteractionClassHandle theInteractionClassHandle) {
@@ -63,4 +54,9 @@ public class HLAreportInteractionSubscription extends HLAreport {
         }
         return candidate;
     }
+
+    public HLAinteractionSubList getHLAinteractionClassList() {
+        HLAinteractionSubList data = (HLAinteractionSubList) getParameter(Attributes.HLAinteractionClassList.name());
+        return data;
+    }    
 }
