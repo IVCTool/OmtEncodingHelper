@@ -20,7 +20,7 @@ import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAhandle;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAhandleList;
 import org.nato.ivct.OmtEncodingHelpers.Core.datatypes.HLAmaxUpdateRateName;
 import hla.rti1516.jlc.HLAinteger32BE;
-import hla.rti1516_202X.encoding.HLAboolean;
+import hla.rti1516e.encoding.HLAboolean;
 import hla.rti1516e.InteractionClassHandle;
 import hla.rti1516e.RtiFactoryFactory;
 import hla.rti1516e.exceptions.FederateNotExecutionMember;
